@@ -25,6 +25,7 @@
 
 let
   terminal=pkgs.${vars.terminal};
+  dwl-custom = pkgs.callPackage /home/askeko/dwl {};
 in
 {
   #imports = (
@@ -63,7 +64,7 @@ in
       microsoft-edge
       bitwarden
       gnomeExtensions.pop-shell
-      dwl
+      dwl-custom
       sway
       greetd.tuigreet
       neovim
