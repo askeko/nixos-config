@@ -18,8 +18,7 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager }: {             # Function telling flak which inputs to use
-    
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager }:               # Function telling flak which inputs to use
     let                                                             # Variables used in flake
       vars = {
         user = "askeko";
@@ -34,7 +33,6 @@
 	  inherit (nixpkgs) lib;
 	  inherit inputs nixpkgs nixpkgs-unstable home-manager vars;
 	}
-      )
+      );
     };
-  };
 }
