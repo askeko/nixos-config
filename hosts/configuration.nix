@@ -25,7 +25,7 @@
 
 let
   terminal=pkgs.${vars.terminal};
-  dwl-custom = pkgs.callPackage ./../modules/desktops/dwl {};
+  dwl-HEAD = pkgs.callPackage ./../modules/desktops/dwl {};
 in
 {
   #imports = (
