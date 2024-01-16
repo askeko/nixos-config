@@ -25,7 +25,16 @@
 
 let
   terminal=pkgs.${vars.terminal};
-  dwl-HEAD = pkgs.callPackage ./../modules/desktops/dwl {};
+
+  # Use nix-prefetch-github askeko dwl to get new sha
+  dwl-custom-source = pkgs.fetchFromGitHub {
+    owner = "askeko";
+    repo = "dwl";
+    rev = "master";
+    hash = "sha256-Pb5Im+YCUKVUw5Mi1dslUFU0c0b0pkajc/h8xUdXHv0=";
+  };
+
+  dwl-custom = (pkgs.callPackage "${dwl-custom-source}/dwl-custom.nix" {});
 in
 {
   #imports = (
@@ -64,6 +73,7 @@ in
       microsoft-edge
       bitwarden
       gnomeExtensions.pop-shell
+      nix-prefetch-github
       dwl-custom
       sway
       greetd.tuigreet
