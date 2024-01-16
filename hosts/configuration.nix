@@ -67,6 +67,7 @@ in
       sway
       greetd.tuigreet
       neovim
+      wezterm
     ] ++
     (with unstable; [
       firefox

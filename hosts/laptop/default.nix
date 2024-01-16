@@ -27,7 +27,7 @@
     };
   };
 
-  laptop.enable = true;                     # Laptop Modules
+  #laptop.enable = true;                     # Laptop Modules
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
