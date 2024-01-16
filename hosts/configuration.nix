@@ -27,8 +27,8 @@ let
   terminal=pkgs.${vars.terminal};
 in
 {
-  imports = (
-  );
+  #imports = (
+  #);
 
   users.users.${vars.user} = {            # System user
     isNormalUser = true;
