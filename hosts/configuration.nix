@@ -25,7 +25,7 @@
 
 let
   terminal=pkgs.${vars.terminal};
-  dwl-custom = pkgs.callPackage /home/askeko/dwl {};
+  dwl-custom = pkgs.callPackage ./modules/desktops/dwl {};
 in
 {
   #imports = (
