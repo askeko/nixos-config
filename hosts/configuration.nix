@@ -68,6 +68,7 @@ in
       greetd.tuigreet
       neovim
       wezterm
+      discord
     ] ++
     (with unstable; [
       firefox
@@ -120,4 +121,15 @@ in
       home-manager.enable = true;
     };
   };
+
+  nixpkgs.overlays = [
+    (self: super: {
+      discord = super.discord.overrideAttrs (
+        _: { src = builtins.fetchTarball {
+	  url = "https://discord.com/api/download?platform=linux&format=tar.gz";
+	  sha256 = "1qgb8hs315g15jz9z5ch84gn48p58vq1sprr07kap1q7kp1slhp4";
+	}; }
+      );
+    })
+  ];
 }
