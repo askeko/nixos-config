@@ -24,6 +24,7 @@
       systemd-boot = {
         enable = true;
       };
+    };
   };
 
   laptop.enable = true;                     # Laptop Modules
