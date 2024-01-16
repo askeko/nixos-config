@@ -68,6 +68,10 @@ in
       VISUAL = "${vars.editor}";
     };
     systemPackages = with pkgs; [
+      # dwl
+      libinput
+
+
       terminal
       wget
       microsoft-edge
