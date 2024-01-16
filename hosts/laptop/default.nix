@@ -19,16 +19,6 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  #boot = {                                  # Boot Options
-  #  loader = {
-  #    efi = {
-  #      canTouchEfiVariables = true;
-  #    };
-  #    systemd-boot = {
-  #      enable = true;
-  #    };
-  #  };
-  #};
 
   #laptop.enable = true;                     # Laptop Modules
 

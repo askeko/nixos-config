@@ -25,16 +25,6 @@
 
 let
   terminal=pkgs.${vars.terminal};
-
-  # Use nix-prefetch-github askeko dwl to get new sha
-  dwl-custom-source = pkgs.fetchFromGitHub {
-    owner = "askeko";
-    repo = "dwl";
-    rev = "master";
-    hash = "";
-  };
-
-  dwl-custom = (pkgs.callPackage "${dwl-custom-source}/dwl-custom.nix" {});
 in
 {
   #imports = (
@@ -68,21 +58,11 @@ in
       VISUAL = "${vars.editor}";
     };
     systemPackages = with pkgs; [
-      # dwl
-      libinput
-
-
       terminal
       wget
       microsoft-edge
       bitwarden
-      gnomeExtensions.pop-shell
-      nix-prefetch-github
-      dwl-custom
-      sway
-      greetd.tuigreet
       neovim
-      wezterm
       discord
     ] ++
     (with unstable; [
