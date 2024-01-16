@@ -31,7 +31,7 @@ let
     owner = "askeko";
     repo = "dwl";
     rev = "master";
-    hash = "sha256-Pb5Im+YCUKVUw5Mi1dslUFU0c0b0pkajc/h8xUdXHv0=";
+    hash = "";
   };
 
   dwl-custom = (pkgs.callPackage "${dwl-custom-source}/dwl-custom.nix" {});
