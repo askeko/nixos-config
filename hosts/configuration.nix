@@ -3,32 +3,27 @@
 #  flake.nix
 #   ├─ ./hosts
 #   │   ├─ default.nix
-#   │   └─ configuration.nix *
+#   │   └─ configuration.nix
 #   └─ ./modules
 #       ├─ ./desktops
 #       │   └─ default.nix
-#       ├─ ./editors
-#       │   └─ default.nix
-#       ├─ ./hardware
-#       │   └─ default.nix
-#       ├─ ./programs
-#       │   └─ default.nix
-#       ├─ ./services
-#       │   └─ default.nix
-#       ├─ ./shell
-#       │   └─ default.nix
-#       └─ ./theming
+#       └─ ./services
 #           └─ default.nix
 #
 
-{ config, pkgs, unstable, inputs, vars, ... }:
+{ pkgs, unstable, inputs, vars, ... }:
 
 let
   terminal=pkgs.${vars.terminal};
 in
 {
-  #imports = (
-  #);
+  imports = (import ../modules/desktops ++
+    import ../modules/programs ++
+    import ../modules/services ++
+    import ../modules/shell);
+
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
 
   users.users.${vars.user} = {            # System user
     isNormalUser = true;
@@ -51,6 +46,11 @@ in
     };
   };
 
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
+
   environment = {
     variables = {
       TERMINAL = "${vars.terminal}";
@@ -60,20 +60,27 @@ in
     systemPackages = with pkgs; [
       terminal
       wget
-      microsoft-edge
+      git
+      curl
       bitwarden
       neovim
       discord
+      firefox
+
+      htop
+      coreutils
+      killall
+      xdg-utils
+      linux-firmware
+      pciutils
     ] ++
     (with unstable; [
-      firefox
     ]);
   };
 
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -94,7 +101,7 @@ in
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 2d";
+      options = "--delete-older-than 9d";
     };
     package = pkgs.nixVersions.unstable;
     registry.nixpkgs.flake = inputs.nixpkgs;
@@ -115,6 +122,12 @@ in
     programs = {
       home-manager.enable = true;
     };
+    xdg = {
+      mime.enable = true;
+      mimeApps = {
+        enable = true;
+      };
+    };
   };
 
   nixpkgs.overlays = [
@@ -122,7 +135,7 @@ in
       discord = super.discord.overrideAttrs (
         _: { src = builtins.fetchTarball {
 	  url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-	  sha256 = "1qgb8hs315g15jz9z5ch84gn48p58vq1sprr07kap1q7kp1slhp4";
+	  sha256 = "0f4m3dzbzir2bdg33sysqx1xi6qigf5lbrdgc8dgnqnqssk7q5mr";
 	}; }
       );
     })

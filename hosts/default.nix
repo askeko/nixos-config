@@ -30,7 +30,7 @@ in
   laptop = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs unstable vars;
+      inherit inputs system unstable vars;
       host = {
         hostName = "laptop";
 	mainMonitor = "eDP-1";

@@ -7,18 +7,18 @@
 {
   description = "Abs' Flake Configuration";
 
-  inputs = {                                                        # Reference used by flake
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";               # Stable nix packages
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";   # Unstable nix packages
+  inputs = {                                                        
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";      # User environment manager
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager }:               # Function telling flak which inputs to use
-    let                                                             # Variables used in flake
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, ... }: 
+    let
       vars = {
         user = "askeko";
 	location = "$HOME/.setup";
