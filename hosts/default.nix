@@ -9,17 +9,12 @@
 #           └─ default.nix
 #
 
-{ lib, inputs, nixpkgs, nixpkgs-unstable, home-manager, vars, ... }:
+{ lib, inputs, nixpkgs, home-manager, vars, ... }:
 
 let 
   system = "x86_64-linux";                    # System architecture
   
   pkgs = import nixpkgs {
-    inherit system;
-    config.allowUnfree = true;                # Allow proprietary software
-  };
-
-  unstable = import nixpkgs-unstable {
     inherit system;
     config.allowUnfree = true;                # Allow proprietary software
   };
@@ -30,7 +25,7 @@ in
   laptop = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs system unstable vars;
+      inherit inputs system vars;
       host = {
         hostName = "laptop";
 	mainMonitor = "eDP-1";

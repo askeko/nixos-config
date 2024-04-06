@@ -22,6 +22,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  hardware.acpilight.enable = true;
+
   bspwm.enable = true;
 
   console.useXkbConfig = true;

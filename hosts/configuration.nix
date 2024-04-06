@@ -11,7 +11,7 @@
 #           └─ default.nix
 #
 
-{ pkgs, unstable, inputs, vars, ... }:
+{ pkgs, inputs, vars, ... }:
 
 let
   terminal=pkgs.${vars.terminal};
@@ -20,14 +20,15 @@ in
   imports = (import ../modules/desktops ++
     import ../modules/programs ++
     import ../modules/services ++
-    import ../modules/shell);
+    import ../modules/shell ++
+    import ../modules/theming);
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
   users.users.${vars.user} = {            # System user
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "video" ];
   };
 
   time.timeZone = "Europe/Copenhagen";    # Time zone and internationalization
@@ -66,6 +67,8 @@ in
       neovim
       discord
       firefox
+      unzip
+      pavucontrol
 
       htop
       coreutils
@@ -73,9 +76,11 @@ in
       xdg-utils
       linux-firmware
       pciutils
-    ] ++
-    (with unstable; [
-    ]);
+    ];
+  };
+
+  programs = {
+    dconf.enable = true;
   };
 
   # Enable sound with pipewire.
@@ -103,7 +108,6 @@ in
       dates = "weekly";
       options = "--delete-older-than 9d";
     };
-    package = pkgs.nixVersions.unstable;
     registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
       experimental-features = nix-command flakes
