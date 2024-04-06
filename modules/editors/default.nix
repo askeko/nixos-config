@@ -1,0 +1,3 @@
+[
+  ./lazyvim/lazyvim.nix
+]

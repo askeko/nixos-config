@@ -18,6 +18,7 @@ let
 in
 {
   imports = (import ../modules/desktops ++
+    import ../modules/editors ++
     import ../modules/programs ++
     import ../modules/services ++
     import ../modules/shell ++
@@ -52,6 +53,10 @@ in
     polkit.enable = true;
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+
   environment = {
     variables = {
       TERMINAL = "${vars.terminal}";
@@ -63,12 +68,18 @@ in
       wget
       git
       curl
+      maim
+      xdotool
       bitwarden
       neovim
       discord
       firefox
       unzip
       pavucontrol
+      obsidian
+      evince
+      gnome.nautilus
+      xournalpp
 
       htop
       coreutils
@@ -78,6 +89,8 @@ in
       pciutils
     ];
   };
+
+  virtualisation.vmware.host.enable = true;
 
   programs = {
     dconf.enable = true;
@@ -122,6 +135,7 @@ in
   home-manager.users.${vars.user} = {     # Home manager settings
     home = {
       stateVersion = "23.11";
+      sessionPath = [ "$HOME/.local/bin" "$HOME/.local/bin/scripts"];
     };
     programs = {
       home-manager.enable = true;

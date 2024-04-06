@@ -18,11 +18,13 @@
     ./hardware-configuration.nix
   ];
 
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   hardware.acpilight.enable = true;
+
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   bspwm.enable = true;
 
