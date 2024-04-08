@@ -1,3 +1,4 @@
 [
   ./rofi.nix
+  ./wezterm.nix
 ]

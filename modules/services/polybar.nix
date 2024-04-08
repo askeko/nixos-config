@@ -16,32 +16,34 @@ in
     home-manager.users.${vars.user} = {
       services = {
         polybar = {
+          script = '''';
           enable = true;
-	  script = '''';
           package = polybar;
           config = {
             "bar/main" = {
               monitor = mainMonitor;
               width = "100%";
-              height = 15;
-              background = "#00000000";
-              foreground = "#ccffffff";
+              height = 20;
+              background = "#16161e";
+              foreground = "#c0caf5";
 
               offset-y = 2;
-              padding-right = 2;
+              offset-x = 2;
+              padding = 5;
               module-margin-left = 1;
 
-              font-0 = "FiraCodeNerdFont:size=10";
+              font-0 = "FiraCodeNerdFont:size=10;2";
               modules-left = "logo bspwm";
-              modules-right = "backlight pad memory cpu pad sink volume pad battery date";
-
-              tray-position = "right";
-              tray-detached = "false";
+              modules-right = "backlight pad memory cpu pad sink volume pad battery date pad tray";
 
               wm-restack = "bspwm";
             };
+            "module/tray" = {
+              type = "internal/tray";
+            };
             "module/memory" = {
               type = "internal/memory";
+              interval = 1;
               format = "<label>";
               format-foreground = "#999";
               label = "  %percentage_used%%";
@@ -131,16 +133,16 @@ in
               type = "internal/bspwm";
               pin-workspace = true;
 
-              ws-icon-0 = "1;";
-              ws-icon-1 = "2;";
-              ws-icon-2 = "3;";
-              ws-icon-3 = "4;";
-              ws-icon-4 = "5;";
-              ws-icon-5 = "6;";
-              ws-icon-6 = "7;";
-              ws-icon-7 = "8;";
-              ws-icon-8 = "9;";
-              ws-icon-9 = "10;";
+              ws-icon-0 = "1;1";
+              ws-icon-1 = "2;2";
+              ws-icon-2 = "3;3";
+              ws-icon-3 = "4;4";
+              ws-icon-4 = "5;5";
+              ws-icon-5 = "6;6";
+              ws-icon-6 = "7;7";
+              ws-icon-7 = "8;8";
+              ws-icon-8 = "9;9";
+              ws-icon-9 = "10;0";
 
               format = "<label-state> <label-mode>";
 
@@ -224,8 +226,8 @@ in
               type = "custom/menu";
               expand-right = true;
 
-              label-open = " %{F#a7c7e7} ";
-              label-close = " %{F#a7c7e7} ";
+              label-open = " %{F#a7c7e7}NIX ";
+              label-close = " %{F#a7c7e7}NIX ";
               label-separator = "|";
               format-spacing = "1";
 

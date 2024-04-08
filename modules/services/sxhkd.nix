@@ -22,6 +22,8 @@
             "XF86MonBrightnessDown" = "xbacklight -dec 5";
             
             "XF86MonBrightnessUp" = "xbacklight -inc 5";
+
+            "Print" = "maimp";
             
             # focus or send window to the given desktop
             "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '^{1-9,0}'";

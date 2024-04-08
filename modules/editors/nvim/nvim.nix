@@ -31,9 +31,9 @@ programs.neovim = {
         }
 
         {
-            plugin = dracula-nvim;
+            plugin = tokyonight-nvim;
             type = "viml";
-            config = "colorscheme dracula";
+            config = "colorscheme tokyonight-night";
         }
 
         nvim-treesitter.withAllGrammars
@@ -94,7 +94,7 @@ programs.neovim = {
 
         {
             plugin = neo-tree-nvim;
-            config = "vim.keymap.set('n', '<c-n>', ':Neotree<CR>')";
+            config = "vim.keymap.set('n', '<leader>e', ':Neotree<CR>')";
         }
 
         {

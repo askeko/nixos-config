@@ -64,6 +64,7 @@ in
           enable = true;
         
           layout = "dk";
+	  xkbModel = "pc105";
           xkbVariant = "dvorak";
 	  xkbOptions = "caps:escape";
 	  libinput = {

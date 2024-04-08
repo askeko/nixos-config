@@ -11,8 +11,6 @@
 #       └─ ./desktops
 #           └─ bspwm.nix
 
-{ pkgs, ... }:
-
 {
   imports = [
     ./hardware-configuration.nix

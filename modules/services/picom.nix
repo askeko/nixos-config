@@ -34,6 +34,7 @@
         fade = true;
         fadeDelta = 5;
         opacityRules = [
+          "20:name = 'org.wezfurlong.wezterm'"
           #"100:name = 'Picture in picture'"
           #"100:name = 'Picture-in-Picture'"
           #"85:class_i ?= 'rofi'"

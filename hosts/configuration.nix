@@ -48,6 +48,10 @@ in
     };
   };
 
+  # Get latest linux kernel, should possibly be moved to laptop config
+  # It fixes suspend on lid close and iio-proxy (accelerometer) issues
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   security = {
     rtkit.enable = true;
     polkit.enable = true;
