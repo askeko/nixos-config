@@ -1,0 +1,52 @@
+snippet derive "#[derive(<trait>)]" b
+#[derive($1)]
+$0
+endsnippet
+
+snippet default "..Default::default()"
+..Default::default()
+endsnippet
+
+snippet SystemLabel "A bevy system label" b
+#[derive(SystemLabel, Debug, Hash, PartialEq, Eq, Clone)]
+$1
+endsnippet
+
+snippet component "A bevy component" b
+#[derive(Component)]
+struct $1;
+endsnippet
+
+snippet "impl Default" "Implement the `Default` trait for a struct" A
+impl Default for $1 {
+	fn default() -> Self {
+		Self {
+			$2
+		}
+	}
+}
+$0
+endsnippet
+
+snippet bpl "Use the bevy prelude" bA
+use bevy::prelude::*;
+endsnippet
+
+snippet plugin "A bevy plugin" b
+pub struct $1;
+
+impl Plugin for $1 {
+	fn build(&self, app: &mut App) {
+		$2
+	}
+}
+$0
+endsnippet
+
+snippet Fn "Function with multiline parameters" bA
+fn $1(
+	$2
+) $3{
+	$0
+}
+endsnippet

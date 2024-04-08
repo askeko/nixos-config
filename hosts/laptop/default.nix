@@ -26,6 +26,8 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  hardware.sensor.iio.enable = true;
+
   bspwm.enable = true;
 
   console.useXkbConfig = true;

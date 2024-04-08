@@ -74,7 +74,7 @@ in
             defaultSession = "default";
 	    session = [
 	      {
-                manage = "desktop";
+          manage = "desktop";
 	        name = "default";
 	        start  = ''exec bspwm'';
 	      }
@@ -103,6 +103,7 @@ in
       };
 
       programs.zsh.enable = true;
+      programs.slock.enable = true;
 
       environment.systemPackages = with pkgs; [
         xclip
@@ -111,6 +112,8 @@ in
 	xorg.xrandr
 	arandr
 	feh
+      maim
+      xdotool
       ];
 
       home-manager.users.${vars.user} = {

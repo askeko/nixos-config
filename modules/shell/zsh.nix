@@ -1,5 +1,5 @@
 #
-# Shell
+#  Shell
 #
 
 { pkgs, vars, ... }:
@@ -19,13 +19,15 @@
 
       ohMyZsh = {
         enable = true;
-	plugins = [ "git" ];
+        plugins = [ "git" ];
       };
 
       shellInit = ''
         # Spaceship
-	source ${pkgs.spaceship-prompt}/share/zsh/site-functions/prompt_spaceship_setup
-	autoload -U promptinit; promptinit
+        source ${pkgs.spaceship-prompt}/share/zsh/site-functions/prompt_spaceship_setup
+        autoload -U promptinit; promptinit
+        # Hook direnv
+        eval "$(direnv hook zsh)"
       '';
     };
   };

@@ -34,6 +34,8 @@
             "super + shift + plus" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+";
             
             "super + q" = "bspc node -c";
+
+            "super + shift + q" = "pwrmenu";
             
             "super + w" = "firefox";
             

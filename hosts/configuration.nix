@@ -68,8 +68,6 @@ in
       wget
       git
       curl
-      maim
-      xdotool
       bitwarden
       neovim
       discord
@@ -80,6 +78,7 @@ in
       evince
       gnome.nautilus
       xournalpp
+      ripgrep
 
       htop
       coreutils

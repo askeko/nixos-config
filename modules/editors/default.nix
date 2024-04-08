@@ -1,3 +1,3 @@
 [
-  ./lazyvim/lazyvim.nix
+  ./nvim/nvim.nix
 ]
