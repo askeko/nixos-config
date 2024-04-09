@@ -10,8 +10,11 @@
       services = {
         sxhkd = {
           enable = true;
+          extraOptions = [ "-m -1" ];
 	  keybindings = {
             "XF86AudioMute" = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+
+            "super + shift + m" = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
             
             "XF86AudioLowerVolume" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
             
