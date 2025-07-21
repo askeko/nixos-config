@@ -93,8 +93,6 @@ in
     ];
   };
 
-  virtualisation.vmware.host.enable = true;
-
   programs = {
     dconf.enable = true;
   };
