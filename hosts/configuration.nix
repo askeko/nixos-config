@@ -80,10 +80,9 @@ in
       pavucontrol
       obsidian
       evince
-      gnome.nautilus
+      nautilus
       xournalpp
       ripgrep
-
       htop
       coreutils
       killall
@@ -98,7 +97,6 @@ in
   };
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
