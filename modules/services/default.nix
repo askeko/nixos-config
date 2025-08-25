@@ -16,5 +16,4 @@
   ./waybar/waybar.nix
   ./dunst.nix
   ./udiskie.nix
-  ./sops.nix
 ]
