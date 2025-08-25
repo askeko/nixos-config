@@ -10,29 +10,34 @@
 #       └─ ./services
 #           └─ default.nix
 #
-
-{ pkgs, inputs, vars, ... }:
-
-let
-  terminal=pkgs.${vars.terminal};
-in
 {
-  imports = (import ../modules/desktops ++
-    import ../modules/editors ++
-    import ../modules/programs ++
-    import ../modules/services ++
-    import ../modules/shell ++
-    import ../modules/theming);
+  pkgs,
+  inputs,
+  vars,
+  ...
+}: let
+  terminal = pkgs.${vars.terminal};
+  editor = pkgs.${vars.editor};
+  browser = pkgs.${vars.browser};
+in {
+  imports =
+    import ../modules/desktops
+    ++ import ../modules/editors
+    ++ import ../modules/programs
+    ++ import ../modules/services
+    ++ import ../modules/shell
+    ++ import ../modules/theming;
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
-  users.users.${vars.user} = {            # System user
+  users.users.${vars.user} = {
+    # System user
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" ];
+    extraGroups = ["wheel" "networkmanager" "video"];
   };
 
-  time.timeZone = "Europe/Copenhagen";    # Time zone and internationalization
+  time.timeZone = "Europe/Copenhagen"; # Time zone and internationalization
   i18n = {
     defaultLocale = "en_DK.UTF-8";
     extraLocaleSettings = {
@@ -62,20 +67,15 @@ in
   ];
 
   environment = {
-    variables = {
-      TERMINAL = "${vars.terminal}";
-      EDITOR = "${vars.editor}";
-      VISUAL = "${vars.editor}";
-    };
     systemPackages = with pkgs; [
       terminal
       wget
       git
       curl
       bitwarden
-      neovim
+      editor
       discord
-      firefox
+      browser
       unzip
       pavucontrol
       obsidian
@@ -87,8 +87,19 @@ in
       coreutils
       killall
       xdg-utils
+      xdg-user-dirs
       linux-firmware
       pciutils
+      grim
+      slurp
+      grimblast # Hyprland screenshot utility
+      hyprpicker # Hyprland color picker and dependency for grimblast
+      wl-clipboard # Clipboard manager for Wayland and dependency for grimblast
+      jq # JSON utility to parse hyprctl output and dependency for grimblast, is also in home-manager
+      libnotify # To show notifications and dependency for grimblast
+      vimiv-qt
+      wev # Wayland event viewer
+      libreoffice # Needed for exams that for some reason needs to be signed with an affice program...
     ];
   };
 
@@ -96,20 +107,29 @@ in
     dconf.enable = true;
   };
 
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+  services = {
+    # Enable sound with pipewire.
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+      # use the example session manager (no others are packaged yet so this is enabled by default,
+      # no need to redefine it in your config for now)
+      #media-session.enable = true;
+    };
+
+    # Keyboard layout outside of desktop environment
+    xserver = {
+      xkb.layout = "dk";
+      xkb.options = "caps:swapescape";
+    };
   };
+
+  # Set default keyboard layout for the xserver
 
   nix = {
     settings = {
@@ -127,14 +147,15 @@ in
       keep-derivations      = true
     '';
   };
-  nixpkgs.config.allowUnfree = true;      # Allow proprietary software
+  nixpkgs.config.allowUnfree = true; # Allow proprietary software
 
-  system.stateVersion = "23.11";          # NixOS settings
+  system.stateVersion = "23.11"; # NixOS settings
 
-  home-manager.users.${vars.user} = {     # Home manager settings
+  home-manager.users.${vars.user} = {
+    # Home manager settings
     home = {
       stateVersion = "23.11";
-      sessionPath = [ "$HOME/.local/bin" "$HOME/.local/bin/scripts"];
+      sessionPath = ["$HOME/.local/bin" "$HOME/.local/bin/scripts"];
     };
     programs = {
       home-manager.enable = true;

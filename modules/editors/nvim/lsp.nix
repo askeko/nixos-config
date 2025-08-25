@@ -1,68 +1,67 @@
-{ pkgs, lib, ... }:
-let
-    lspPlugin = { name, cmd,  extraConfig ? "{}" }:
-        # TODO: Add the ability to pass cmd as an array
-        let setupArgs = "{ cmd = { '${cmd}' } }"; in ''
-        do
-            local setupArgs = ${setupArgs}
-            local extraArgs = ${extraConfig}
-            for k,v in pairs(extraArgs) do setupArgs[k] = v end
-            require'lspconfig'.${name}.setup(setupArgs)
-        end
-    '';
-    lspPlugins = plugins: builtins.concatStringsSep "\n" (map lspPlugin plugins);
-in
-with pkgs.vimPlugins; [
-    {
-        plugin = nvim-lspconfig;
-        type = "lua";
-        config = builtins.readFile ./lua/plugin/lspconfig.lua + "\n" + (lspPlugins [
-            {
-                name = "nil_ls";
-                cmd = "${pkgs.nil}/bin/nil";
-            }
+{...}: {
+  programs.nvf.settings.vim = {
+    treesitter = {
+      enable = true;
+      context.enable = true;
+      fold = false;
+    };
 
-            {
-                name = "texlab";
-                cmd = "${pkgs.texlab}/bin/texlab";
-            }
+    lsp = {
+      enable = true;
+      formatOnSave = true;
+      lightbulb.enable = true;
+      lspkind.enable = true;
 
-            {
-                name = "omnisharp";
-                cmd = "${pkgs.omnisharp-roslyn}/bin/OmniSharp";
-                extraConfig = ''
-                    {
-                        enable_roslyn_analyzers = true,
-                        enable_import_completion = true,
-                    }
-                '';
-            }
-        ]);
-    }
+      mappings = {
+        # Actions
+        codeAction = "<leader>ca";
+        renameSymbol = "<leader>rn";
+        # Goto
+        goToDeclaration = "gD";
+        goToDefinition = "gd";
+        goToType = "gt";
+        listImplementations = "gi";
+        listReferences = "gr";
+        # Diagnostics
+        openDiagnosticFloat = "<leader>k";
+        nextDiagnostic = "<leader>dn";
+        previousDiagnostic = "<leader>dn";
+        # Info
+        hover = "K";
+        signatureHelp = "<leader>K";
+      };
+    };
 
-    {
-        plugin = neodev-nvim;
-        type = "lua";
-        config = builtins.readFile ./lua/plugin/neodev.lua;
-    }
-    # autocompletion
-    {
-        plugin = nvim-cmp;
-        type = "lua";
-        config = builtins.readFile ./lua/plugin/cmp.lua;
-    }
-    cmp-buffer
-    cmp-path
-    cmp_luasnip
-    cmp-nvim-lua
-    cmp-nvim-lsp
+    languages = {
+      enableDAP = true;
+      enableExtraDiagnostics = true;
+      enableFormat = true;
+      enableLSP = true;
+      enableTreesitter = true;
 
-    # Debugger
-    {
-        plugin = nvim-dap;
-        type = "lua";
-        config = builtins.readFile ./lua/plugin/dap.lua;
-    }
-    nvim-dap-ui # UI for Debugger
-
-]
+      # Languages
+      bash.enable = true;
+      css.enable = true;
+      emmet.enable = true;
+      haskell.enable = true;
+      helm.enable = true;
+      html.enable = true;
+      nix.enable = true;
+      python.enable = true;
+      rust = {
+        enable = true;
+        crates.enable = true;
+      };
+      tailwind.enable = true;
+      ts = {
+        enable = true;
+        extensions.ts-error-translator.enable = true;
+      };
+      typst = {
+        enable = true;
+        format.enable = false;
+      };
+      yaml.enable = true;
+    };
+  };
+}

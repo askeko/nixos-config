@@ -1,4 +1,0 @@
-[
-./set.lua
-./remap.lua
-]

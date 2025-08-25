@@ -11,5 +11,6 @@
 
 [
   ./bspwm.nix
+  ./hyprland/hyprland.nix
   ./options.nix
 ]

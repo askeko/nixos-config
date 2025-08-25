@@ -5,6 +5,7 @@
 { config, lib, vars, ... }:
 
 {
+  # TODO: change to bspwm enable instead of x11wm
   config = lib.mkIf (config.x11wm.enable) {
     home-manager.users.${vars.user} = {
       services = {

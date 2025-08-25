@@ -1,3 +1,3 @@
 [
-  ./nvim/nvim.nix
+  ./nvim/nvf.nix
 ]

@@ -8,8 +8,13 @@
 #       └─ ./desktops
 #           ├─ default.nix
 #           └─ ...
-
 [
   ./sxhkd.nix
   ./polybar.nix
+  ./rofi.nix
+  ./hyprlock.nix
+  ./waybar/waybar.nix
+  ./dunst.nix
+  ./udiskie.nix
+  ./sops.nix
 ]

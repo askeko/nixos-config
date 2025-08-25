@@ -10,7 +10,7 @@
 #   └─ ./modules
 #       └─ ./desktops
 #           └─ bspwm.nix
-
+#           └─ hyprland.nix
 {
   imports = [
     ./hardware-configuration.nix
@@ -24,9 +24,12 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  services.udisks2.enable = true;
+
   hardware.sensor.iio.enable = true;
 
-  bspwm.enable = true;
+  # Change this to the desired desktop environment from the desktop modules
+  hyprland.enable = true;
 
   console.useXkbConfig = true;
 }

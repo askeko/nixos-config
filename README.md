@@ -1,11 +1,17 @@
 # nixos-config
 ## Installation
-Partition, format, and mount drives (see NixOS installation guide, or use graphical install)
+
+Partition, format, and mount drives (see NixOS installation guide), then run the following commands to install nixos:
+
 ```
 sudo su
 nix-env -iA nixos.git
 git clone https://github.com/askeko/nixos-config/ /mnt/etc/nixos
 cd /mnt/etc/nixos
 nixos-install --flake .#<hostname>
-reboot
 ```
+
+[!NOTE]
+Remember to set password for the user, otherwise log int as root and set it afterwards.
+
+Reboot after installing nixos.

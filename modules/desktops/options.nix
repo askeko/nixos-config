@@ -14,5 +14,12 @@ with lib;
         default = false;
       };
     };
+
+    waylandwm = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+      };
+    };
   };
 }

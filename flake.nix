@@ -9,6 +9,7 @@
 
   inputs = {                                                        
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nvf.url = "github:Bliztle/nvf/emmet-language-server"; # For vim config
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -16,13 +17,14 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }: 
+  outputs = inputs @ { self, nixpkgs, home-manager, nvf, ... }: 
     let
       vars = {
         user = "askeko";
 	location = "$HOME/.setup";
 	terminal = "wezterm";
-	editor = "nvim";
+	editor = "neovim";
+	browser = "firefox";
       };
     in
     {

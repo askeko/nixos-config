@@ -9,23 +9,13 @@
 #           └─ default.nix
 #
 
-{ lib, inputs, nixpkgs, home-manager, vars, ... }:
+{ inputs, nixpkgs, home-manager, vars, ... }:
 
-let 
-  system = "x86_64-linux";                    # System architecture
-  
-  pkgs = import nixpkgs {
-    inherit system;
-    config.allowUnfree = true;                # Allow proprietary software
-  };
-
-  lib = nixpkgs.lib;
-in
 {
-  laptop = lib.nixosSystem {
-    inherit system;
+  laptop = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";                    # System architecture
     specialArgs = {
-      inherit inputs system vars;
+      inherit inputs vars;
       host = {
         hostName = "laptop";
 	mainMonitor = "eDP-1";
@@ -33,6 +23,7 @@ in
       };
     };
     modules = [
+      inputs.nvf.nixosModules.default
       ./laptop
       ./configuration.nix
 
