@@ -1,11 +1,15 @@
 #
-#  GTK
+#  Theming configuration
 #
 {
   pkgs,
   vars,
   ...
 }: {
+  programs = {
+    dconf.enable = true; # Configuration backend for GNOME/GTK
+  };
+
   home-manager.users.${vars.user} = {
     home = {
       file.".local/share/wall.jpg".source = ./wall.jpg;

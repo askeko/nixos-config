@@ -8,12 +8,13 @@
 #       └─ ./desktops
 #           ├─ default.nix
 #           └─ ...
-[
-  ./sxhkd.nix
-  ./polybar.nix
-  ./rofi.nix
-  ./hyprlock.nix
-  ./waybar/waybar.nix
-  ./dunst.nix
-  ./udiskie.nix
-]
+{
+  imports = [
+    ./waybar/waybar.nix
+    ./audio.nix
+    ./bluetooth.nix
+    ./dunst.nix
+    ./polybar.nix
+    ./udiskie.nix
+  ];
+}

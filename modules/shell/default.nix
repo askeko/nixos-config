@@ -1,4 +1,6 @@
-[
-  ./zsh.nix
-  ./direnv.nix
-]
+{
+  imports = [
+    ./direnv.nix
+    ./zsh.nix
+  ];
+}

@@ -1,5 +1,5 @@
 {
   imports = [
-    ./nvim/nvf.nix
+    ./office.nix
   ];
 }

@@ -21,7 +21,7 @@ with host; {
     };
   };
 
-  imports = [./apps.nix ./binds.nix ./settings.nix ./windowrules.nix ./hyprpaper.nix];
+  imports = [./apps.nix ./binds.nix ./settings.nix ./windowrules.nix ./hyprpaper.nix ./hyprlock.nix];
 
   config =
     mkIf config.hyprland.enable
@@ -33,9 +33,11 @@ with host; {
           enable = true;
           withUWSM = true; # Recommended way to launch Hyprland for neat integration with systemd
         };
+        # TODO: probably not needed as it's defined elsewhere
         zsh.enable = true;
       };
 
+      # TODO: move to theming module
       fonts.packages = with pkgs; [
         nerd-fonts.symbols-only
         nerd-fonts.fira-code

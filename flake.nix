@@ -4,7 +4,7 @@
 # | |- default.nix
 #
 {
-  description = "Abs' Flake Configuration";
+  description = "Askeko's NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -19,19 +19,18 @@
   outputs = inputs @ {
     nixpkgs,
     home-manager,
+    nvf,
     ...
   }: let
     vars = {
       user = "askeko";
-      location = "$HOME/.setup";
-      terminal = "wezterm";
-      editor = "neovim";
+      terminal = "kitty";
       browser = "firefox";
     };
   in {
     nixosConfigurations = import ./hosts {
       inherit (nixpkgs) lib;
-      inherit inputs nixpkgs home-manager vars;
+      inherit inputs nixpkgs home-manager nvf vars;
     };
   };
 }

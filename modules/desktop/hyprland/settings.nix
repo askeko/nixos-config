@@ -3,11 +3,9 @@
   config,
   lib,
   vars,
-  host,
   ...
 }:
-with lib;
-with host; {
+with lib; {
   config = mkIf config.hyprland.enable {
     home-manager.users.${vars.user} = {
       wayland.windowManager.hyprland.settings = {

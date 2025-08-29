@@ -1,3 +1,5 @@
-[
-  ./theming.nix
-]
+{
+  imports = [
+    ./theming.nix
+  ];
+}

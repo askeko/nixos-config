@@ -8,28 +8,34 @@
 #       └─ ./<host>.nix
 #           └─ default.nix
 #
-
-{ inputs, nixpkgs, home-manager, vars, ... }:
-
 {
-  laptop = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";                    # System architecture
+  inputs,
+  nixpkgs,
+  home-manager,
+  nvf,
+  vars,
+  ...
+}:
+# This is where you define host specific configurations
+{
+  yoga7 = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux"; # System architecture
     specialArgs = {
       inherit inputs vars;
       host = {
-        hostName = "laptop";
-	mainMonitor = "eDP-1";
-	secondMonitor = "";
+        hostName = "halflight"; # The machines hostname
+        mainMonitor = "eDP-1"; # The name of the main monitor for use in configs
       };
     };
     modules = [
-      inputs.nvf.nixosModules.default
-      ./laptop
-      ./configuration.nix
+      nvf.nixosModules.default # Neovim configuration
+      ./yoga7/configuration.nix # Host specific configuration
 
-      home-manager.nixosModules.home-manager {
+      # Home-Manager configuration
+      home-manager.nixosModules.home-manager
+      {
         home-manager.useGlobalPkgs = true;
-	home-manager.useUserPackages = true;
+        home-manager.useUserPackages = true;
       }
     ];
   };

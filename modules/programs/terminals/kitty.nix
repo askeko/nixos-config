@@ -1,9 +1,6 @@
-#
-# Modern replacement for ls
-#
 {vars, ...}: {
   home-manager.users.${vars.user} = {
-    programs.eza = {
+    programs.kitty = {
       enable = true;
     };
   };

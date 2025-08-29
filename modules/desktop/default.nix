@@ -8,9 +8,11 @@
 #       └─ ./desktops
 #           ├─ default.nix
 #           └─ ...
-
-[
-  ./bspwm.nix
-  ./hyprland/hyprland.nix
-  ./options.nix
-]
+{
+  imports = [
+    ./bspwm/bspwm.nix
+    ./hyprland/hyprland.nix
+    ./options.nix
+    ./filemanager.nix
+  ];
+}
