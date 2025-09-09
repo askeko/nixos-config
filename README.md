@@ -15,3 +15,6 @@ nixos-install --flake .#<hostname>
 Remember to set password for the user, otherwise log int as root and set it afterwards.
 
 Reboot after installing nixos.
+
+### Special thanks
+NixOS structure provided by @Misterio77
