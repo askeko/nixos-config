@@ -24,7 +24,7 @@
       # The state version indicates which default settings are in effect and will therefore help
       # avoid breaking program configurations. Switching to a higher state version typically
       # requires performing some manual steps, such as data conversion or moving files.
-      stateVersion = "24.11";
+      stateVersion = "23.11";
       sessionPath = ["$HOME/.local/bin" "$HOME/.local/bin/scripts"];
     };
     programs = {
