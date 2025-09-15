@@ -12,5 +12,7 @@
     ./screenshot.nix
     ./utils.nix
     ./xournalpp.nix
+    ./uppaal.nix
+    ./evince.nix
   ];
 }
