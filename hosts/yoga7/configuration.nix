@@ -43,7 +43,7 @@
   # User setup
   users.users.${vars.user} = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "video"];
+    extraGroups = ["wheel" "networkmanager" "video" "docker"];
   };
 
   hardware = {
