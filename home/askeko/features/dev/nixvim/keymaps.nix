@@ -1,0 +1,72 @@
+{
+  programs.nixvim = {
+    keymaps = [
+      {
+        key = "<C-h>";
+        mode = "n";
+        action = "<C-w>h";
+      }
+      {
+        key = "<C-j>";
+        mode = "n";
+        action = "<C-w>j";
+      }
+      {
+        key = "<C-k>";
+        mode = "n";
+        action = "<C-w>k";
+      }
+      {
+        key = "<C-l>";
+        mode = "n";
+        action = "<C-w>l";
+      }
+      {
+        key = "<C-Left>";
+        mode = "n";
+        action = "<C-w>h";
+      }
+      {
+        key = "<C-Down>";
+        mode = "n";
+        action = "<C-w>j";
+      }
+      {
+        key = "<C-Up>";
+        mode = "n";
+        action = "<C-w>k";
+      }
+      {
+        key = "<C-Right>";
+        mode = "n";
+        action = "<c-w>l";
+      }
+      # ZZ Jumps
+      {
+        key = "<C-d>";
+        mode = "n";
+        action = "<C-d>zz";
+      }
+      {
+        key = "<C-u>";
+        mode = "n";
+        action = "<C-u>zz";
+      }
+      {
+        key = "n";
+        mode = "n";
+        action = "nzzzv";
+      }
+      {
+        key = "N";
+        mode = "n";
+        action = "Nzzzv";
+      }
+      {
+        key = "gd";
+        mode = "n";
+        action = "gdzzzv";
+      }
+    ];
+  };
+}

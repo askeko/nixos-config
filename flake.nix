@@ -7,30 +7,67 @@
   description = "Askeko's NixOS Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nvf.url = "github:Bliztle/nvf/emmet-language-server"; # For vim config
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ {
+  outputs = {
+    self,
     nixpkgs,
     home-manager,
-    nvf,
     ...
-  }: let
-    vars = {
-      user = "askeko";
-      terminal = "kitty";
-      browser = "firefox";
-    };
+  } @ inputs: let
+    inherit (self) outputs;
+    # Supported systems
+    systems = ["x86_64-linux"];
+
+    forEachSystems = nixpkgs.lib.genAttrs systems;
   in {
-    nixosConfigurations = import ./hosts {
-      inherit (nixpkgs) lib;
-      inherit inputs nixpkgs home-manager nvf vars;
+    # Custom packages, accessible through 'nix-build', 'nix-shell', etc.
+    #packages = forEachSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    # Formatter for nix files. Accessible through 'nix fmt'. Use 'alejandra' or 'nixpkgs-fmt'
+    formatter = forEachSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    # Custom packages and modifications, exported as overlays
+    #overlays = import ./overlays {inherit inputs;};
+    # Reusable nixos modules you might want to export
+    # These are usually stuff you would upstream into nixpkgs
+    #nixosModules = import ./modules/nixos;
+    # Reusable home-manager modules you might want to export
+    # These are usually stuff you would upstream into home-manager
+    #homeManagerModules = import ./modules/home-manager;
+
+    # NixOS configuration entrypoint
+    # Available through 'nixos-rebuild --flake .#your-hostname'
+    nixosConfigurations = {
+      # Laptop configuration
+      halflight = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main nixos configuration file <
+          ./hosts/halflight
+        ];
+      };
+    };
+
+    # Standalone home-manager configuration entrypoint
+    homeConfigurations = {
+      # Replace with appropriate username@hostname
+      "askeko@absentia" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          ./home/askeko/absentia.nix
+        ];
+      };
     };
   };
 }
