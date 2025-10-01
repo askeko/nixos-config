@@ -1,6 +1,9 @@
-{ pkgs, ... }:
 {
   programs = {
+    starship = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     zsh = {
       enable = true;
       autosuggestion.enable = true;
@@ -14,11 +17,11 @@
       };
 
       initContent = ''
-        # Spaceship
-        source ${pkgs.spaceship-prompt}/share/zsh/site-functions/prompt_spaceship_setup
         autoload -U promptinit; promptinit
         # Hook direnv
         eval "$(direnv hook zsh)"
+        # Starship prompt
+        eval "$(starship init zsh)"
       '';
     };
   };

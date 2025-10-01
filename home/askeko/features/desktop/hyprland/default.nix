@@ -8,6 +8,7 @@
     ../common/default.nix
     ../common/wayland-wm/default.nix
 
+    ./autostart-tty1.nix
     ./binds.nix
     ./hyprlock.nix
     ./hyprpaper.nix

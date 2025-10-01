@@ -3,8 +3,8 @@
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = ["/home/askeko/Pictures/Wallpapers/slick/muscle-car-ice-road-red-moon.jpg"];
-      wallpaper = [",/home/askeko/Pictures/Wallpapers/slick/muscle-car-ice-road-red-moon.jpg"];
+      preload = [ "/home/askeko/Pictures/Wallpapers/slick/explorer_green_day.jpg" ];
+      wallpaper = [ ",/home/askeko/Pictures/Wallpapers/slick/explorer_green_day.jpg" ];
     };
   };
 }

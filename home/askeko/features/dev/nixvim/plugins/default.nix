@@ -1,11 +1,9 @@
 {
   imports = [
     ./telescope.nix
-    ./llm.nix
     ./git.nix
     ./harpoon.nix
     ./neotest.nix
-    ./notebook.nix
   ];
 
   programs.nixvim = {

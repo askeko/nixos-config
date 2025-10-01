@@ -9,9 +9,8 @@
 
   programs.nixvim = {
     enable = true;
-    colorschemes.catppuccin = {
+    colorschemes.everforest = {
       enable = true;
-      settings.flavour = "mocha";
     };
     # colorschemes.tokyonight.enable = true;
     globals = {
