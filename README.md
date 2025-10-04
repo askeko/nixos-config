@@ -1,20 +1,17 @@
 # nixos-config
-## Installation
+## Installation (Graphical installer)
+Boot into the graphical installer and follow the instructions, then reboot and login to the the user that was created
 
-Partition, format, and mount drives (see NixOS installation guide), then run the following commands to install nixos:
+You might need to run `nixos-generate-config` to setup the hardware configuration, then copy the file into the appropriate hosts folder.
 
 ```
-sudo su
 nix-env -iA nixos.git
-git clone https://github.com/askeko/nixos-config/ /mnt/etc/nixos
-cd /mnt/etc/nixos
-nixos-install --flake .#<hostname>
+git clone https://github.com/askeko/nixos-config/
+nix-env -e git # To avoid package conflicts when building the system
+nixos-rebuild switch --flake .#<hostname>
 ```
 
-[!NOTE]
-Remember to set password for the user, otherwise log int as root and set it afterwards.
-
-Reboot after installing nixos.
+Logout and log back in.
 
 ### Special thanks
 NixOS structure provided by @Misterio77
