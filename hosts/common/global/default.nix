@@ -2,12 +2,14 @@
   inputs,
   outputs,
   ...
-}: let
+}:
+let
   vars = {
     terminal = "kitty";
     browser = "firefox";
   };
-in {
+in
+{
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ./nix.nix

@@ -12,10 +12,11 @@
     colorschemes.everforest = {
       enable = true;
     };
-    # colorschemes.tokyonight.enable = true;
+
     globals = {
       mapleader = " ";
     };
+
     opts = {
       number = true;
       relativenumber = true;
@@ -31,10 +32,7 @@
       foldexpr = "nvim_treesitter#foldexpr()";
       foldenable = false;
     };
+
     clipboard.register = "unnamedplus";
-    plugins = {
-      lualine.enable = true;
-      web-devicons.enable = true;
-    };
   };
 }

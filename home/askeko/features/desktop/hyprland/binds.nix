@@ -1,5 +1,6 @@
 # Binds for Hyprland
-{vars, ...}: {
+{ vars, ... }:
+{
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
     # Keyboard binds
@@ -26,7 +27,7 @@
       # Split orientation
       "$mainMod, S, togglesplit"
 
-      # Toggle fullscreen, with (F) or without (Shift+F) gaps
+      # Toggle fullscreen
       "$mainMod, F, fullscreen, 0"
 
       # Floating window operations
@@ -82,12 +83,20 @@
       ##################
       ####  SYSTEM  ####
       ##################
+
+      # Set volume with fn keys
       ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
       ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
-      #",XF86MonBrightnessUp, exec, brightnessctl set +10%"
-      #",XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+      # Set volume
+      "$mainMod SHIFT, minus, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      "$mainMod SHIFT, plus, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+      "$mainMod SHIFT, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+
+      # Set brightness with fn keys
+      ",XF86MonBrightnessUp, exec, brightnessctl set +10%"
+      ",XF86MonBrightnessDown, exec, brightnessctl set 10%-"
 
       ##################
       #### PROGRAMS ####
@@ -95,7 +104,19 @@
       "$mainMod, RETURN, exec, ${vars.terminal}"
       "$mainMod, W, exec, ${vars.browser}"
       "$mainMod, D, exec, rofi -show drun"
+      "$mainMod, R, exec, ${vars.terminal} yazi"
+      "$mainMod, T, exec, ${vars.terminal} btop"
+
+      "$mainMod, A, exec, hyprctl --batch 'keyword general:gaps_in 5 ; keyword general:gaps_out 2, 8, 8, 8 ; keyword general:border_size 3 ; keyword decoration:rounding 5 ; keyword decoration:drop_shadow true'"
+      "$mainMod SHIFT, A, exec, hyprctl --batch 'keyword general:gaps_in 0 ; keyword general:gaps_out 0 ; keyword general:border_size 3 ; keyword decoration:rounding 0 ; keyword decoration:drop_shadow false'"
+
+      "$mainMod SHIFT, Q, exec, pwrmenu"
+      "$mainMod, Print, exec, scrot"
+      "$mainMod Shift, P, exec, scrot"
+      ", Print, exec, grim -g \"$(slurp -d)\" - | wl-copy -t image/png"
+      "$mainMod, P, exec, grim -g \"$(slurp -d)\" - | wl-copy -t image/png"
     ];
+
     # Mouse binds
     bindm = [
       # Move/resize windows with mainMod + LMB/RMB and dragging

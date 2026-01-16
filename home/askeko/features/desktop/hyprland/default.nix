@@ -3,6 +3,10 @@
 # Enable with "hyprland.enable = true;"
 #
 { pkgs, ... }:
+let
+  scrot = pkgs.writeShellScriptBin "scrot" (builtins.readFile ./scripts/scrot.sh);
+  pwrmenu = pkgs.writeShellScriptBin "pwrmenu" (builtins.readFile ./scripts/pwrmenu.sh);
+in
 {
   imports = [
     ../common/default.nix
@@ -23,16 +27,21 @@
     hyprpicker
     nerd-fonts.fira-code
     nerd-fonts.symbols-only
+    scrot
+    pwrmenu
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
-    xwayland.enable = true;
-    systemd.enable = true;
+
+    systemd = {
+      enable = true;
+    };
+
     settings = {
       exec-once = [
         "waybar"
+        "blueman-applet"
       ];
     };
   };

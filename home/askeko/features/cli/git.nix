@@ -1,8 +1,12 @@
 {
   programs.git = {
     enable = true;
-    aliases = {
-      graph = "log --decorate --oneline --graph";
+    settings = {
+      user.name = "askeko";
+      user.email = "askeklitgaard@gmail.com";
+      alias = {
+        graph = "log --decorate --oneline --graph";
+      };
     };
   };
 }

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim = {
     plugins = {
       treesitter = {
@@ -7,7 +8,7 @@
           highlight.enable = true;
           indent.enable = true;
         };
-        folding = false;
+        folding.enable = false;
         grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;
       };
       treesitter-context.enable = true;
@@ -48,13 +49,6 @@
           tailwindcss.enable = true; # Tailwindcss
           html.enable = true; # HTML
           cssls.enable = true; # CSS
-          tinymist.enable = true; # Typst
-          basedpyright.enable = true; # Python
-          rust_analyzer = {
-            enable = true;
-            installCargo = false;
-            installRustc = false;
-          }; # Rust
         };
         keymaps = {
           silent = true;
@@ -97,6 +91,10 @@
             };
           };
           diagnostic = {
+            "<leader>k" = {
+              action = "open_float";
+              desc = "Line Diagnostics";
+            };
             "<leader>df" = {
               action = "open_float";
               desc = "Line Diagnostics";
@@ -115,20 +113,31 @@
       cmp = {
         enable = true;
         autoEnableSources = true;
-        settings.sources = [
-          {
-            name = "nvim_lsp";
-          }
-          {
-            name = "luasnip";
-          }
-          {
-            name = "path";
-          }
-          {
-            name = "buffer";
-          }
-        ];
+        settings = {
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+            "<C-e>" = "cmp.mapping.close()";
+            "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          };
+          sources = [
+            {
+              name = "nvim_lsp";
+            }
+            {
+              name = "luasnip";
+            }
+            {
+              name = "path";
+            }
+            {
+              name = "buffer";
+            }
+          ];
+        };
       };
     };
     extraPlugins = with pkgs.vimPlugins; [

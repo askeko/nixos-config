@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
-    # ./nixvim
-    ./nvf
+    ./nixvim
+    # ./nvf
   ];
   home.packages = with pkgs; [
     # Haskell

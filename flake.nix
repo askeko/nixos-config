@@ -30,54 +30,57 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    # Supported systems
-    systems = ["x86_64-linux"];
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      # Supported systems
+      systems = [ "x86_64-linux" ];
 
-    forEachSystems = nixpkgs.lib.genAttrs systems;
-  in {
-    # Custom packages, accessible through 'nix-build', 'nix-shell', etc.
-    #packages = forEachSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-    # Formatter for nix files. Accessible through 'nix fmt'. Use 'alejandra' or 'nixpkgs-fmt'
-    formatter = forEachSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-    # Custom packages and modifications, exported as overlays
-    #overlays = import ./overlays {inherit inputs;};
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
-    #nixosModules = import ./modules/nixos;
-    # Reusable home-manager modules you might want to export
-    # These are usually stuff you would upstream into home-manager
-    #homeManagerModules = import ./modules/home-manager;
+      forEachSystems = nixpkgs.lib.genAttrs systems;
+    in
+    {
+      # Custom packages, accessible through 'nix-build', 'nix-shell', etc.
+      # packages = forEachSystems (pkgs: import ./pkgs { inherit pkgs; });
+      # Formatter for nix files. Accessible through 'nix fmt'. Use 'alejandra' or 'nixpkgs-fmt'
+      formatter = forEachSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+      # Custom packages and modifications, exported as overlays
+      #overlays = import ./overlays {inherit inputs;};
+      # Reusable nixos modules you might want to export
+      # These are usually stuff you would upstream into nixpkgs
+      #nixosModules = import ./modules/nixos;
+      # Reusable home-manager modules you might want to export
+      # These are usually stuff you would upstream into home-manager
+      #homeManagerModules = import ./modules/home-manager;
 
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      # Laptop configuration
-      halflight = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main nixos configuration file <
-          ./hosts/halflight
-        ];
+      # NixOS configuration entrypoint
+      # Available through 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations = {
+        # Laptop configuration
+        halflight = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            # > Our main nixos configuration file <
+            ./hosts/halflight
+          ];
+        };
+      };
+
+      # Standalone home-manager configuration entrypoint
+      homeConfigurations = {
+        # Replace with appropriate username@hostname
+        "askeko@absentia" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home/askeko/absentia.nix
+          ];
+        };
       };
     };
-
-    # Standalone home-manager configuration entrypoint
-    homeConfigurations = {
-      # Replace with appropriate username@hostname
-      "askeko@absentia" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          ./home/askeko/absentia.nix
-        ];
-      };
-    };
-  };
 }

@@ -7,9 +7,11 @@
     ./evince.nix
     ./filemanager.nix
     ./firefox.nix
+    ./gtk.nix
     ./obsidian.nix
     ./pavucontrol.nix
     ./rofi.nix
+    ./spotify.nix
     ./udiskie.nix
   ];
 

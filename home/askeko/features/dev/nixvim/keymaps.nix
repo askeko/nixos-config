@@ -67,6 +67,11 @@
         mode = "n";
         action = "gdzzzv";
       }
+      {
+        key = "<leader>qq";
+        mode = "n";
+        action = "<cmd>qa<cr>";
+      }
     ];
   };
 }

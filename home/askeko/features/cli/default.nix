@@ -14,6 +14,7 @@
     curl # For transferring data with URLs
     unzip # For extracting zip files
     coreutils # Basic utilities
+    usbutils
 
     # TODO: Some of these should be moved
     killall

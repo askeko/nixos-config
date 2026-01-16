@@ -4,27 +4,27 @@
 {
   programs.waybar = {
     enable = true;
-    style = ''
-      /* One Dark Theme */
-      @define-color background        #282c34;
-      @define-color background_alt    #333842;
-      @define-color foreground        #abb2bf;
-      @define-color blue              #61afef;
-      @define-color blue_alt          #8fc6f4;
-      @define-color cyan              #56b6c2;
-      @define-color cyan_alt          #7bc6d0;
-      @define-color magenta           #c678dd;
-      @define-color magenta_alt       #d7a1e7;
-      @define-color yellow            #e5c07b;
-      @define-color yellow_alt        #edd4a6;
-      @define-color green             #98c379;
-      @define-color green_alt         #b3d39c;
-      @define-color red               #e06c75;
-      @define-color white             #abb2bf;
-      @define-color orange            #cc9057;
+    style = /* css */ ''
+      /* Everforest Theme */
+      @define-color background        #2D353B;
+      @define-color background_alt    #343F44;
+      @define-color foreground        #D3C6AA;
+      @define-color blue              #7FBBB3;
+      @define-color blue_alt          #a5cfc9;
+      @define-color cyan              #83C092;
+      @define-color cyan_alt          #a8d2b2;
+      @define-color magenta           #D699B6;
+      @define-color magenta_alt       #e2b7cb;
+      @define-color yellow            #DBBC7F;
+      @define-color yellow_alt        #ecd2a2;
+      @define-color green             #A7C080;
+      @define-color green_alt         #c1d2a6;
+      @define-color red               #E67E80;
+      @define-color white             #D3C6AA;
+      @define-color orange            #E69875;
 
-      @define-color grey              #535965;
-      @define-color light_grey        #7a818e;
+      @define-color grey              #7A8478;
+      @define-color light_grey        #9DA9A0;
 
       @keyframes blink {
         to {
@@ -38,7 +38,7 @@
           FiraCode Nerd Font Mono;
         font-size: 15px;
         min-height: 0;
-        margin-top: 1px;
+        margin-top: 0px;
       }
 
       #temperature,
@@ -56,7 +56,7 @@
       #custom-scrot {
         background-color: @background;
         padding: 0.5rem 0.8rem;
-        margin: 8px 0;
+        margin: 8px 0 0 0;
       }
 
       #waybar {
@@ -66,9 +66,12 @@
 
       #workspaces {
         background-color: @background;
-        border-radius: 2rem;
+        border-radius: 1rem;
         margin: 8px;
         margin-left: 1rem;
+        margin-bottom: 0;
+        padding-left: 8px;
+        padding-right: 8px;
       }
 
       #workspaces button {
@@ -193,9 +196,23 @@
         position = "top"; # Waybar position (top|bottom|left|right)
 
         # Choose the order of the modules
-        modules-left = ["hyprland/workspaces" "temperature" "cpu" "memory" "disk"];
-        modules-center = ["custom/music"];
-        modules-right = ["custom/pacman" "backlight" "wireplumber" "network" "battery" "clock" "tray"];
+        modules-left = [
+          "hyprland/workspaces"
+          "temperature"
+          "cpu"
+          "memory"
+          "disk"
+        ];
+        modules-center = [ "custom/music" ];
+        modules-right = [
+          "custom/pacman"
+          "backlight"
+          "wireplumber"
+          "network"
+          "battery"
+          "clock"
+          "tray"
+        ];
 
         "hyprland/workspaces" = {
           active-only = false;
@@ -203,14 +220,25 @@
           show-special = true;
           format = "{icon}";
           format-icons = {
-            active = "󰣇";
+            active = "󱄅";
             persistent = "";
             empty = "";
             urgent = "";
-            default = "󰣇";
+            default = "󱄅";
           };
           persistent-workspaces = {
-            "*" = 10; # 10 workspaces by default on every monitor
+            "*" = [
+              1
+              2
+              3
+              4
+              5
+              6
+              7
+              8
+              9
+              10
+            ]; # 10 workspaces by default on every monitor
           };
         };
 
@@ -223,7 +251,11 @@
           critical-threshold = 80;
           format-critical = "{icon} {temperatureC}°";
           format = "{icon} {temperatureC}°";
-          format-icons = ["󱃃" "󱩿" "󰸁"];
+          format-icons = [
+            "󱃃"
+            "󱩿"
+            "󰸁"
+          ];
         };
 
         cpu = {
@@ -250,7 +282,18 @@
 
         backlight = {
           format = "{icon}";
-          format-icons = ["󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
+          format-icons = [
+            "󱩎"
+            "󱩏"
+            "󱩐"
+            "󱩑"
+            "󱩒"
+            "󱩓"
+            "󱩔"
+            "󱩕"
+            "󱩖"
+            "󰛨"
+          ];
         };
 
         disk = {
@@ -285,7 +328,18 @@
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
           format-plugged = "󰚥 {capacity}%";
-          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󱐋"];
+          format-icons = [
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󱐋"
+          ];
         };
 
         wireplumber = {
@@ -293,7 +347,11 @@
           format = "{icon} {volume}%";
           format-muted = "";
           max-volume = 120;
-          format-icons = ["" "" ""];
+          format-icons = [
+            ""
+            ""
+            ""
+          ];
         };
 
         "custom/scrot" = {
