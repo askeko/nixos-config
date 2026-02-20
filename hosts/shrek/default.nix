@@ -8,7 +8,7 @@
     ./desktop/plasma.nix
 
     ../common/global
-    ../common/users/shrek
+    ../common/users/askeko
 
     ../common/optional/pipewire.nix
     ../common/optional/udisks2.nix
