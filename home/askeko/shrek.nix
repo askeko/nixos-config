@@ -2,8 +2,6 @@
   imports = [
     ./global
 
-    ./features/desktop/plasma
-
     ./features/uni/office.nix
 
     ./features/dev
