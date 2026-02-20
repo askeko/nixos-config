@@ -1,6 +1,8 @@
 {
   imports = [
-    ./uppaal.nix
+    ./office.nix
     ./quickemu.nix
+    ./tapaal.nix
+    ./uppaal.nix
   ];
 }

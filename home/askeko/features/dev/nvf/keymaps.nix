@@ -1,90 +1,67 @@
 {
   programs.nvf.settings.vim = {
-    keymaps = [
-      ### Movement ###
-      # Windows
-      {
-        key = "<C-h>";
-        mode = "n";
-        action = "<C-w>h";
-      }
-      {
-        key = "<C-j>";
-        mode = "n";
-        action = "<C-w>j";
-      }
-      {
-        key = "<C-k>";
-        mode = "n";
-        action = "<C-w>k";
-      }
-      {
-        key = "<C-l>";
-        mode = "n";
-        action = "<C-w>l";
-      }
-      {
-        key = "<C-Left>";
-        mode = "n";
-        action = "<C-w>h";
-      }
-      {
-        key = "<C-Down>";
-        mode = "n";
-        action = "<C-w>j";
-      }
-      {
-        key = "<C-Up>";
-        mode = "n";
-        action = "<C-w>k";
-      }
-      {
-        key = "<C-Right>";
-        mode = "n";
-        action = "<c-w>l";
-      }
-      # ZZ Jumps
-      {
-        key = "<C-d>";
-        mode = "n";
-        action = "<C-d>zz";
-      }
-      {
-        key = "<C-u>";
-        mode = "n";
-        action = "<C-u>zz";
-      }
-      {
-        key = "n";
-        mode = "n";
-        action = "nzzzv";
-      }
-      {
-        key = "N";
-        mode = "n";
-        action = "Nzzzv";
-      }
-      {
-        key = "gd";
-        mode = "n";
-        action = "gdzzzv";
-      }
-      # Haskell
-      {
-        key = "<leader>hs";
-        mode = "n";
-        action = ":lua require('haskell-tools').hoogle.hoogle_signature()<CR>";
-      }
-      {
-        key = "<leader>he";
-        mode = "n";
-        action = ":lua require('haskell-tools').lsp.buf_eval_all()<CR>";
-      }
-      {
-        key = "<leader>hr";
-        mode = "n";
-        action = ":lua require('haskell-tools').repl.toggle()<CR>";
-      }
-    ];
+    maps = {
+      normal = {
+        # Window navigation
+        "<C-h>" = {
+          action = "<C-w>h";
+          desc = "Navigate to left window";
+        };
+        "<C-j>" = {
+          action = "<C-w>j";
+          desc = "Navigate to bottom window";
+        };
+        "<C-k>" = {
+          action = "<C-w>k";
+          desc = "Navigate to top window";
+        };
+        "<C-l>" = {
+          action = "<C-w>l";
+          desc = "Navigate to right window";
+        };
+        "<C-Left>" = {
+          action = "<C-w>h";
+          desc = "Navigate to left window";
+        };
+        "<C-Down>" = {
+          action = "<C-w>j";
+          desc = "Navigate to bottom window";
+        };
+        "<C-Up>" = {
+          action = "<C-w>k";
+          desc = "Navigate to top window";
+        };
+        "<C-Right>" = {
+          action = "<C-w>l";
+          desc = "Navigate to right window";
+        };
+
+        # Centered scrolling - ZZ Jumps
+        "<C-d>" = {
+          action = "<C-d>zz";
+          desc = "Scroll down and center";
+        };
+        "<C-u>" = {
+          action = "<C-u>zz";
+          desc = "Scroll up and center";
+        };
+        "n" = {
+          action = "nzzzv";
+          desc = "Next search result centered";
+        };
+        "N" = {
+          action = "Nzzzv";
+          desc = "Previous search result centered";
+        };
+        "gd" = {
+          action = "gdzzzv";
+          desc = "Go to definition centered";
+        };
+        "<leader>qq" = {
+          action = "<cmd>qa<cr>";
+          desc = "Quit all";
+        };
+      };
+    };
   };
 }

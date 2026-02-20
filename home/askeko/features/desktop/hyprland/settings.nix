@@ -22,10 +22,11 @@
 
     monitor = [
       "desc:Lenovo Group Limited 0x88A3,preferred,0x0,1"
-      "desc:Lenovo Group Limited P27q-20 V909LPXV,preferred,1920x0,1"
+      "desc:Lenovo Group Limited P27q-20,preferred,1920x0,1"
       "desc:Samsung Electric Company Odyssey G85SB H1AK500000,preferred,4480x0,1"
       "desc:Synaptics Inc Non-PnP 0x00BC614E,3440x1440,4480x0,1"
       "desc:Acer Technologies XB271HU T4TEE0028502,preferred,1920x0,1"
+      "desc:Samsung Electric Company SAMSUNG 0x01000E00,preferred,auto,1,mirror,eDP-1"
     ];
 
     # Per-device options. Will override options set in input section.

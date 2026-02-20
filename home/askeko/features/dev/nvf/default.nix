@@ -1,29 +1,55 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   imports = [
     inputs.nvf.homeManagerModules.default
+    ./theme.nix
+    ./plugins
     ./keymaps.nix
     ./lsp.nix
-    ./plugins
+    ./autocmds.nix
   ];
 
   programs.nvf = {
     enable = true;
-    enableManpages = true;
+
     settings.vim = {
+      viAlias = true;
+      vimAlias = true;
+
+      # Leader key
+      globals.mapleader = " ";
+
+      # Editor options
+      lineNumberMode = "relNumber";
+
+      # Custom options
       options = {
-        tabstop = 4;
-        softtabstop = 4;
-        shiftwidth = 4;
-        expandtab = true;
-        wrap = false;
+        tabstop = 4; # Width of tab space
+        softtabstop = 4; # Number of spaces inserted when pressing tab
+        shiftwidth = 4; # Number of spaces for each indentation level
+        expandtab = true; # Converts tabs to spaces
+        smarttab = true; # Use shiftwidth at line start, tabstop elsewhere
+
+        wrap = false; # Word wrapping
+
+        ignorecase = true; # Case-insensitive search
+        smartcase = true; # Override ignorecase if search has upper-case
+
+        # TODO: How to fold?? (fold indents/functions/etc.)
+        foldmethod = "expr";
+        foldexpr = "nvim_treesitter#foldexpr()";
+        foldenable = false;
       };
-      searchCase = "smart";
-      theme = {
+
+      clipboard = {
         enable = true;
-        name = "everforest";
-        style = "hard";
+        registers = "unnamedplus";
       };
-      clipboard.registers = "unnamedplus";
+
+      # Theme
+      theme = {
+        enable = false;
+      };
     };
   };
 }

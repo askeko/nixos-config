@@ -204,6 +204,7 @@
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "nvf": "nvf",
+        "tapaal": "tapaal",
         "zen-browser": "zen-browser"
       }
     },
@@ -234,6 +235,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tapaal": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770948166,
+        "narHash": "sha256-8pfj6/2CkZs0c/4NLr7fAWalLxIemmCn0A0X65U+3LI=",
+        "owner": "Bliztle",
+        "repo": "tapaal-nix",
+        "rev": "992d02b3e9f12add73ab1e41e85e9f23f08b9277",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Bliztle",
+        "repo": "tapaal-nix",
         "type": "github"
       }
     },
