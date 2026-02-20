@@ -5,21 +5,19 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./desktop/plasma.nix
 
     ../common/global
-    ../common/users/askeko
-    # TODO: Not ideal with hyprland import here
-    ../common/optional/hyprland.nix
+    ../common/users/shrek
 
-    ../common/optional/bluetooth.nix
     ../common/optional/pipewire.nix
     ../common/optional/udisks2.nix
 
-    #    ../common/optional/docker.nix
+    ../common/optional/docker.nix
   ];
 
   networking = {
-    hostName = "halflight";
+    hostName = "shrek";
     networkmanager.enable = true;
   };
 
@@ -34,8 +32,6 @@
   };
 
   hardware = {
-    acpilight.enable = true; # Brightness control via xbacklight (user must be in video group)
-    sensor.iio.enable = true; # Enables accelerometer (This also requires a newer kernel)
   };
 
   # Locale settings

@@ -74,6 +74,15 @@
             ./hosts/halflight
           ];
         };
+
+        # Uni pc configuration
+        shrek = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            # > Our main nixos configuration file <
+            ./hosts/shrek
+          ];
+        };
       };
 
       # Standalone home-manager configuration entrypoint
