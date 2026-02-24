@@ -57,6 +57,13 @@
         treesitter.enable = true;
       };
 
+      python = {
+        enable = true;
+        lsp.enable = true;
+        treesitter.enable = true;
+        format.enable = true;
+      };
+
       # Tailwind CSS - handled via extraPlugins or custom config
       # There's no direct vim.languages.tailwind in nvf
       # We'll configure it via extraPlugins below
