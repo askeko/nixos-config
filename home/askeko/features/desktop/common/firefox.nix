@@ -4,10 +4,10 @@
   ...
 }:
 {
-  imports = [ inputs.zen-browser.homeModules.twilight ];
-  programs.zen-browser = {
-    enable = true;
-  };
+  # imports = [ inputs.zen-browser.homeModules.twilight ];
+  # programs.zen-browser = {
+  #   enable = true;
+  # };
 
   programs.firefox = {
     enable = true;

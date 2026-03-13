@@ -24,6 +24,7 @@
       lspkind.enable = true;
       lightbulb.enable = true;
       lspSignature.enable = true;
+      # Dotnet lsp omnisharp extras
     };
 
     # Fast action UI (replaces nvimCodeActionMenu)
@@ -57,11 +58,28 @@
         treesitter.enable = true;
       };
 
+      # Python
       python = {
         enable = true;
-        lsp.enable = true;
+        lsp = {
+          enable = true;
+          servers = [ "pyright" ];
+        };
         treesitter.enable = true;
-        format.enable = true;
+        format = {
+          enable = true;
+          type = [ "ruff" ];
+        };
+      };
+
+      # C#
+      csharp = {
+        enable = true;
+        lsp = {
+          enable = true;
+          servers = [ "roslyn_ls" ];
+        };
+        treesitter.enable = true;
       };
 
       # Tailwind CSS - handled via extraPlugins or custom config
@@ -90,14 +108,6 @@
 
     # Snippets
     snippets.luasnip.enable = true;
-
-    # Diagnostic configuration (replaces lsp-lines plugin)
-    luaConfigRC.diagnostics-config = ''
-      vim.diagnostic.config({ 
-        virtual_lines = true,  -- Show diagnostics as virtual lines
-        virtual_text = false   -- Disable inline virtual text
-      })
-    '';
 
     # Additional LSP servers using modern vim.lsp API
     luaConfigRC.extra-lsp-servers = ''
