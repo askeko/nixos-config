@@ -9,6 +9,8 @@
     ./zsh.nix
   ];
 
+  services.ssh-agent.enable = true;
+
   home.packages = with pkgs; [
     wget # For downloading files
     curl # For transferring data with URLs

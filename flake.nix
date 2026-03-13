@@ -74,6 +74,14 @@
             ./hosts/halflight
           ];
         };
+
+        # Desktop configuration
+        lazarus = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/lazarus
+          ];
+        };
       };
 
       # Standalone home-manager configuration entrypoint
