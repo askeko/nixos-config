@@ -23,10 +23,23 @@
     monitor = [
       "desc:Lenovo Group Limited 0x88A3,preferred,0x0,1"
       "desc:Lenovo Group Limited P27q-20,preferred,1920x0,1"
-      "desc:Samsung Electric Company Odyssey G85SB H1AK500000,preferred,4480x0,1"
+      "desc:Samsung Electric Company Odyssey G85SB H1AK500000,3440x1440@174.96Hz,0x0,1,bitdepth, 10, cm, hdr"
       "desc:Synaptics Inc Non-PnP 0x00BC614E,3440x1440,4480x0,1"
-      "desc:Acer Technologies XB271HU T4TEE0028502,preferred,1920x0,1"
+      "desc:Acer Technologies XB271HU,2560x1440@144.00Hz,-2560x0,1"
       "desc:Samsung Electric Company SAMSUNG 0x01000E00,preferred,auto,1,mirror,eDP-1"
+    ];
+
+    workspace = [
+      "1,monitor:desc:Samsung Electric Company Odyssey G85SB,default:true"
+      "2,monitor:desc:Samsung Electric Company Odyssey G85SB,default:true"
+      "3,monitor:desc:Samsung Electric Company Odyssey G85SB,default:true"
+      "4,monitor:desc:Samsung Electric Company Odyssey G85SB,default:true"
+      "5,monitor:desc:Samsung Electric Company Odyssey G85SB,default:true"
+      "6,monitor:desc:Acer Technologies XB271HU,default:true"
+      "7,monitor:desc:Acer Technologies XB271HU,default:true"
+      "8,monitor:desc:Acer Technologies XB271HU,default:true"
+      "9,monitor:desc:Acer Technologies XB271HU,default:true"
+      "10,monitor:desc:Acer Technologies XB271HU,default:true"
     ];
 
     # Per-device options. Will override options set in input section.

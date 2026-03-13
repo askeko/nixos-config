@@ -26,6 +26,7 @@
     utility.sleuth.enable = true;
     utility.surround.enable = true;
     visuals.rainbow-delimiters.enable = true;
+    utility.diffview-nvim.enable = true;
 
     # Plugin keybinds
     maps = {
