@@ -15,6 +15,7 @@
     ../common/optional/udisks2.nix
     ../common/optional/nvidia.nix
     ../common/optional/steam.nix
+    ../common/optional/vpn.nix
 
     #    ../common/optional/docker.nix
   ];
