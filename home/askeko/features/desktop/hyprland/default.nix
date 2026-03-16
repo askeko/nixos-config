@@ -42,6 +42,7 @@ in
       exec-once = [
         "waybar"
         "blueman-applet"
+        "playerctld"
       ];
     };
   };
