@@ -1,7 +1,12 @@
 #
 #  Bar for wayland
 #
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    lm_sensors # dependency of temp module
+    playerctl # dependency of music module
+  ];
   programs.waybar = {
     enable = true;
     style = /* css */ ''
@@ -41,17 +46,17 @@
         margin-top: 0px;
       }
 
-      #temperature,
+      #custom-temperature,
       #cpu,
       #memory,
       #disk,
       #network,
-      #custom-pacman,
+      #custom-nix,
       #custom-music,
       #tray,
-      #backlight,
+      #custom-backlight,
       #clock,
-      #battery,
+      #custom-battery,
       #wireplumber,
       #custom-scrot {
         background-color: @background;
@@ -105,13 +110,13 @@
         animation-direction: alternate;
       }
 
-      #temperature {
+      #custom-temperature {
         color: @yellow;
         border-radius: 1rem 0px 0px 1rem;
         margin-left: 1rem;
       }
 
-      #temperature.critical {
+      #custom-temperature.critical {
         animation-name: blink;
         animation-duration: 1s;
         animation-timing-function: steps(200);
@@ -137,7 +142,7 @@
         color: @magenta;
       }
 
-      #custom-pacman {
+      #custom-nix {
         color: @orange;
         border-radius: 1rem 0px 0px 1rem;
         margin-left: 1rem;
@@ -149,11 +154,11 @@
         margin-right: 1rem;
       }
 
-      #battery {
+      #custom-battery {
         color: @cyan;
       }
 
-      #battery.critical:not(.charging) {
+      #custom-battery.critical {
         animation-name: blink;
         animation-duration: 1s;
         animation-timing-function: steps(200);
@@ -161,7 +166,7 @@
         animation-direction: alternate;
       }
 
-      #backlight {
+      #custom-backlight {
         color: @yellow;
       }
 
@@ -198,18 +203,18 @@
         # Choose the order of the modules
         modules-left = [
           "hyprland/workspaces"
-          "temperature"
+          "custom/temperature"
           "cpu"
           "memory"
           "disk"
         ];
         modules-center = [ "custom/music" ];
         modules-right = [
-          "custom/pacman"
-          "backlight"
+          "custom/nix"
+          "custom/backlight"
           "wireplumber"
           "network"
-          "battery"
+          "custom/battery"
           "clock"
           "tray"
         ];
@@ -247,15 +252,18 @@
           spacing = 10;
         };
 
-        temperature = {
-          critical-threshold = 80;
-          format-critical = "{icon} {temperatureC}°";
-          format = "{icon} {temperatureC}°";
-          format-icons = [
-            "󱃃"
-            "󱩿"
-            "󰸁"
-          ];
+        "custom/temperature" = {
+          format = "{}";
+          interval = 5;
+          return-type = "json";
+          exec = ''
+            temp=$(sensors -j 2>/dev/null | jq '.["k10temp-pci-00c3"].Tctl.temp1_input | round')
+            if [ "$temp" -ge 80 ]; then icon="󰸁"; class="critical"
+            elif [ "$temp" -ge 60 ]; then icon="󱩿"; class=""
+            else icon="󱃃"; class=""
+            fi
+            echo "{\"text\":\"''${icon} ''${temp}°\", \"class\":\"''${class}\"}"
+          '';
         };
 
         cpu = {
@@ -273,27 +281,16 @@
           format-disconnected = "󰞃 Disconnected";
         };
 
-        "custom/pacman" = {
-          format = "{}  ";
-          interval = 1800; # every half hour
-          exec = "checkupdates | wc -l"; # num of updates
-          exec-if = "exit 0"; # always run; consider advanced run conditions
-        };
-
-        backlight = {
-          format = "{icon}";
-          format-icons = [
-            "󱩎"
-            "󱩏"
-            "󱩐"
-            "󱩑"
-            "󱩒"
-            "󱩓"
-            "󱩔"
-            "󱩕"
-            "󱩖"
-            "󰛨"
-          ];
+        "custom/nix" = {
+          format = "{}";
+          interval = 1800;
+          signal = 8;
+          exec = ''
+            days=$(( ( $(date +%s) - $(stat -c %Y /run/current-system) ) / 86400 ))
+            gens=$(ls /nix/var/nix/profiles/ | grep -c "system-[0-9]")
+            echo "󰑓 ''${days}d  󰆼 ''${gens}"
+          '';
+          on-click = "pkill -RTMIN+8 waybar";
         };
 
         disk = {
@@ -304,11 +301,10 @@
         };
 
         "custom/music" = {
-          format = "  {}";
+          format = " {}";
           escape = true;
-          interval = 5;
           tooltip = false;
-          exec = "playerctl metadata --format='{{ title }}'";
+          exec = "playerctl --player=playerctld --follow metadata --format='{{ title }}' 2>/dev/null";
           on-click = "playerctl play-pause";
           max-length = 40;
         };
@@ -319,27 +315,52 @@
           format = "󰥔 {:%H:%M | %d/%m}";
         };
 
-        battery = {
-          tooltip = false;
-          full-at = 99;
-          states = {
-            critical = 15;
-          };
-          format = "{icon} {capacity}%";
-          format-charging = "󰂄 {capacity}%";
-          format-plugged = "󰚥 {capacity}%";
-          format-icons = [
-            "󰁺"
-            "󰁻"
-            "󰁼"
-            "󰁽"
-            "󰁾"
-            "󰁿"
-            "󰂀"
-            "󰂁"
-            "󰂂"
-            "󱐋"
-          ];
+        "custom/battery" = {
+          return-type = "json";
+          interval = 30;
+          exec-if = "ls /sys/class/power_supply/BAT* 2>/dev/null";
+          exec = ''
+            capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+            status=$(cat /sys/class/power_supply/BAT0/status)
+            if [ "$status" = "Charging" ]; then icon="󰂄"
+            elif [ "$status" = "Full" ]; then icon="󰚥"
+            elif [ "$capacity" -le 10 ]; then icon="󰁺"
+            elif [ "$capacity" -le 20 ]; then icon="󰁻"
+            elif [ "$capacity" -le 30 ]; then icon="󰁼"
+            elif [ "$capacity" -le 40 ]; then icon="󰁽"
+            elif [ "$capacity" -le 50 ]; then icon="󰁾"
+            elif [ "$capacity" -le 60 ]; then icon="󰁿"
+            elif [ "$capacity" -le 70 ]; then icon="󰂀"
+            elif [ "$capacity" -le 80 ]; then icon="󰂁"
+            elif [ "$capacity" -le 90 ]; then icon="󰂂"
+            else icon="󱐋"
+            fi
+            class=""
+            if [ "$status" = "Discharging" ] && [ "$capacity" -le 15 ]; then class="critical"; fi
+            echo "{\"text\":\"''${icon} ''${capacity}%\", \"class\":\"''${class}\"}"
+          '';
+        };
+
+        "custom/backlight" = {
+          interval = 2;
+          exec-if = "ls /sys/class/backlight/ 2>/dev/null | grep -q .";
+          exec = ''
+            brightness=$(brightnessctl get)
+            max=$(brightnessctl max)
+            percent=$(( brightness * 100 / max ))
+            if [ "$percent" -le 10 ]; then icon="󱩎"
+            elif [ "$percent" -le 20 ]; then icon="󱩏"
+            elif [ "$percent" -le 30 ]; then icon="󱩐"
+            elif [ "$percent" -le 40 ]; then icon="󱩑"
+            elif [ "$percent" -le 50 ]; then icon="󱩒"
+            elif [ "$percent" -le 60 ]; then icon="󱩓"
+            elif [ "$percent" -le 70 ]; then icon="󱩔"
+            elif [ "$percent" -le 80 ]; then icon="󱩕"
+            elif [ "$percent" -le 90 ]; then icon="󱩖"
+            else icon="󰛨"
+            fi
+            echo "''${icon}"
+          '';
         };
 
         wireplumber = {

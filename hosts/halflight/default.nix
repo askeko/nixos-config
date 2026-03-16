@@ -34,9 +34,12 @@
   };
 
   hardware = {
-    acpilight.enable = true; # Brightness control via xbacklight (user must be in video group)
     sensor.iio.enable = true; # Enables accelerometer (This also requires a newer kernel)
   };
+
+  environment.systemPackages = with pkgs; [
+    brightnessctl
+  ];
 
   # Locale settings
   time.timeZone = "Europe/Copenhagen";

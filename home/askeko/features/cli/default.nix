@@ -30,5 +30,6 @@
     fd.enable = true; # Better find
     eza.enable = true; # Better ls
     ripgrep.enable = true; # Better grep
+    jq.enable = true; # Command-line JSON processor
   };
 }
