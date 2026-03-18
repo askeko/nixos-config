@@ -5,6 +5,13 @@
   programs.hyprlock = {
     enable = true;
     settings = {
+      background = [
+        {
+          monitor = "";
+          path = "~/Pictures/Wallpapers/slick/fantasy-mountain2.jpg";
+        }
+      ];
+
       input-field = [
         {
           monitor = "";
