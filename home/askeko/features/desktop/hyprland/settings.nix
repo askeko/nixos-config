@@ -101,6 +101,7 @@
       rounding = 5;
       blur = {
         enabled = true;
+        size = 10;
       };
       shadow = {
         enabled = true;
