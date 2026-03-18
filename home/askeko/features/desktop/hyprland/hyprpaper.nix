@@ -6,7 +6,7 @@
       splash = false;
       wallpaper = {
         monitor = "";
-        path = "/home/askeko/Pictures/Wallpapers/slick/explorer_green_day.jpg";
+        path = "/home/askeko/Pictures/Wallpapers/slick/fantasy-mountain2.jpg";
       };
     };
   };

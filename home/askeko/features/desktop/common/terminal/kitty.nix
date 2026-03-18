@@ -9,7 +9,7 @@
       font_size = 11.0;
       enable_audio_bell = "no";
 
-      background_opacity = 0.8;
+      background_opacity = 0.7;
 
       # Flexoki Dark Theme
       foreground = "#CECDC3";
