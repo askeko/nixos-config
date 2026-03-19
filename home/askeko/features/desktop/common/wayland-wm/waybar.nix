@@ -318,7 +318,7 @@
         "custom/battery" = {
           return-type = "json";
           interval = 30;
-          exec-if = "ls /sys/class/power_supply/BAT* 2>/dev/null";
+          exec-if = "ls /sys/class/power_supply/ | grep -q '^BAT'";
           exec = ''
             capacity=$(cat /sys/class/power_supply/BAT0/capacity)
             status=$(cat /sys/class/power_supply/BAT0/status)
