@@ -104,8 +104,8 @@
       "$mainMod, RETURN, exec, ${vars.terminal}"
       "$mainMod, W, exec, ${vars.browser}"
       "$mainMod, D, exec, rofi -show drun"
-      "$mainMod, R, exec, ${vars.terminal} yazi"
-      "$mainMod, T, exec, ${vars.terminal} btop"
+      "$mainMod, R, exec, ${vars.terminal} -e yazi"
+      "$mainMod, T, exec, ${vars.terminal} -e btop"
 
       "$mainMod, A, exec, hyprctl --batch 'keyword general:gaps_in 5 ; keyword general:gaps_out 2, 8, 8, 8 ; keyword general:border_size 3 ; keyword decoration:rounding 5 ; keyword decoration:drop_shadow true'"
       "$mainMod SHIFT, A, exec, hyprctl --batch 'keyword general:gaps_in 0 ; keyword general:gaps_out 0 ; keyword general:border_size 3 ; keyword decoration:rounding 0 ; keyword decoration:drop_shadow false'"

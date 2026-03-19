@@ -5,7 +5,7 @@
 }:
 let
   vars = {
-    terminal = "kitty";
+    terminal = "ghostty";
     browser = "firefox";
   };
 in
