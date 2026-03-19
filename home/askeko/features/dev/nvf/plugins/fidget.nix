@@ -3,6 +3,10 @@
     enable = true;
     setupOpts = {
       notification.override_vim_notify = true;
+      notification.window = {
+        winblend = 0;
+        border = "none";
+      };
     };
   };
 

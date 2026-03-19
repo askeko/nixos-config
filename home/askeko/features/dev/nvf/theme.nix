@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   programs.nvf.settings.vim = {
-    extraPlugins = with pkgs.vimPlugins; {
+    extraPlugins = {
       # Flexoki theme - custom plugin since it's not in nvf built-ins
       # Using kepano/flexoki-neovim - the original implementation
       flexoki-neovim = {
@@ -24,5 +24,10 @@
         '';
       };
     };
+    luaConfigRC.transparency = ''
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    '';
   };
 }
