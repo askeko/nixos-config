@@ -125,4 +125,4 @@ Then create individual tool files alongside it.
 1. If it's a **new category**, tell the user to import it from `home/askeko/<hostname>.nix` for each host that should have it
 2. If it's a **new file in an existing category**, add the import to that category's `default.nix` — it will automatically apply to all hosts using that category
 3. If the feature needs a **system-level counterpart** (e.g. a service, hardware config), suggest also creating an optional module with the add-optional-module skill
-4. Run `nix fmt` to format new files
+4. Run `nix fmt **/*.nix` to format new files

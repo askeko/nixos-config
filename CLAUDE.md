@@ -60,6 +60,6 @@ flake.nix                           # nixosConfigurations + homeConfigurations
 ```bash
 sudo nixos-rebuild switch --flake .#<hostname>
 home-manager switch --flake .#askeko@absentia   # standalone HM
-nix fmt
+nix fmt **/*.nix
 nix flake update
 ```

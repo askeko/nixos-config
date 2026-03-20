@@ -75,4 +75,4 @@ Only include `pkgs` or other args in the function signature if actually used. If
 
 1. Tell the user to import it in whichever host config needs it by adding `../common/optional/<name>.nix` to the imports list in `hosts/<hostname>/default.nix`
 2. If the module adds new groups (e.g. `docker`), check if `hosts/common/users/askeko/default.nix` should include that group in the `ifTheyExist` list
-3. Run `nix fmt` to format the new file
+3. Run `nix fmt **/*.nix` to format the new file
