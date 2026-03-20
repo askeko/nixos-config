@@ -4,6 +4,6 @@
   ...
 }: {
   home.packages = [
-    inputs.tapaal.packages.${pkgs.system}.tapaal
+    inputs.tapaal.packages.${pkgs.stdenv.hostPlatform.system}.tapaal
   ];
 }
