@@ -27,6 +27,7 @@
       "desc:Synaptics Inc Non-PnP 0x00BC614E,3440x1440,4480x0,1"
       "desc:Acer Technologies XB271HU,2560x1440@144.00Hz,-2560x0,1"
       "desc:Samsung Electric Company SAMSUNG 0x01000E00,preferred,auto,1,mirror,eDP-1"
+      "desc:Lightware Visual Engineering,preferred,auto,1,mirror,eDP-1"
     ];
 
     workspace = [

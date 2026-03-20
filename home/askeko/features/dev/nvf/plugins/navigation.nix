@@ -9,5 +9,8 @@
         file4 = "<C-L>";
       };
     };
+    luaConfigRC.harpoon-telescope = ''
+      require('telescope').load_extension('harpoon')
+    '';
   };
 }

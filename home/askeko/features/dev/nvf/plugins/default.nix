@@ -3,7 +3,6 @@
     ./bufferline.nix
     ./fidget.nix
     ./git.nix
-    ./harpoon.nix
     ./lualine.nix
     ./navigation.nix
     ./neotest.nix
