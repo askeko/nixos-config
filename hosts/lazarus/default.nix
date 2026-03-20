@@ -1,8 +1,7 @@
 #
 #  Specific system configuration settings for desktop
 #
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
 

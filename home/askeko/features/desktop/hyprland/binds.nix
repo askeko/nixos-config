@@ -1,6 +1,5 @@
 # Binds for Hyprland
-{ vars, ... }:
-{
+{vars, ...}: {
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
     # Keyboard binds

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.nvf.settings.vim = {
     extraPlugins = {
       # Flexoki theme - custom plugin since it's not in nvf built-ins

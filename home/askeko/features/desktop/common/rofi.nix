@@ -1,8 +1,7 @@
 #
 # Menu launcher, now working for both Wayland and X11
 #
-{ config, ... }:
-let
+{config, ...}: let
   # Use `mkLiteral` for string-like values that should show without
   # quotes, e.g.:
   # {
@@ -10,8 +9,7 @@ let
   #   bar = mkLiteral "abc"; => bar: abc;
   # };
   inherit (config.lib.formats.rasi) mkLiteral;
-in
-{
+in {
   programs = {
     rofi = {
       enable = true;

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./vimiv.nix
     ./waybar.nix
@@ -15,5 +14,5 @@
     LIBSEAT_BACKEND = "logind";
   };
 
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-wlr];
 }

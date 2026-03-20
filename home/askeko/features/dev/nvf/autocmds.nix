@@ -1,10 +1,9 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   programs.nvf.settings.vim = {
-    augroups = [ { name = "highlight_yank"; } ];
+    augroups = [{name = "highlight_yank";}];
     autocmds = [
       {
-        event = [ "TextYankPost" ];
+        event = ["TextYankPost"];
         group = "highlight_yank";
         desc = "Highlight on yank";
         callback = lib.generators.mkLuaInline ''
