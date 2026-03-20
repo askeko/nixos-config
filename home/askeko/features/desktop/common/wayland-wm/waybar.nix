@@ -1,200 +1,203 @@
 #
 #  Bar for wayland
 #
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     lm_sensors # dependency of temp module
     playerctl # dependency of music module
   ];
   programs.waybar = {
     enable = true;
-    style = /* css */ ''
-      /* Everforest Theme */
-      @define-color background        #2D353B;
-      @define-color background_alt    #343F44;
-      @define-color foreground        #D3C6AA;
-      @define-color blue              #7FBBB3;
-      @define-color blue_alt          #a5cfc9;
-      @define-color cyan              #83C092;
-      @define-color cyan_alt          #a8d2b2;
-      @define-color magenta           #D699B6;
-      @define-color magenta_alt       #e2b7cb;
-      @define-color yellow            #DBBC7F;
-      @define-color yellow_alt        #ecd2a2;
-      @define-color green             #A7C080;
-      @define-color green_alt         #c1d2a6;
-      @define-color red               #E67E80;
-      @define-color white             #D3C6AA;
-      @define-color orange            #E69875;
+    style =
+      /*
+      css
+      */
+      ''
+        /* Everforest Theme */
+        @define-color background        #2D353B;
+        @define-color background_alt    #343F44;
+        @define-color foreground        #D3C6AA;
+        @define-color blue              #7FBBB3;
+        @define-color blue_alt          #a5cfc9;
+        @define-color cyan              #83C092;
+        @define-color cyan_alt          #a8d2b2;
+        @define-color magenta           #D699B6;
+        @define-color magenta_alt       #e2b7cb;
+        @define-color yellow            #DBBC7F;
+        @define-color yellow_alt        #ecd2a2;
+        @define-color green             #A7C080;
+        @define-color green_alt         #c1d2a6;
+        @define-color red               #E67E80;
+        @define-color white             #D3C6AA;
+        @define-color orange            #E69875;
 
-      @define-color grey              #7A8478;
-      @define-color light_grey        #9DA9A0;
+        @define-color grey              #7A8478;
+        @define-color light_grey        #9DA9A0;
 
-      @keyframes blink {
-        to {
+        @keyframes blink {
+          to {
+            background-color: @red;
+          }
+        }
+
+        * {
+          font-family:
+            Symbols Nerd Font,
+            FiraCode Nerd Font Mono;
+          font-size: 15px;
+          min-height: 0;
+          margin-top: 0px;
+        }
+
+        #custom-temperature,
+        #cpu,
+        #memory,
+        #disk,
+        #network,
+        #custom-nix,
+        #custom-music,
+        #tray,
+        #custom-backlight,
+        #clock,
+        #custom-battery,
+        #wireplumber,
+        #custom-scrot {
+          background-color: @background;
+          padding: 0.5rem 0.8rem;
+          margin: 8px 0 0 0;
+        }
+
+        #waybar {
+          background: transparent;
+          color: @background;
+        }
+
+        #workspaces {
+          background-color: @background;
+          border-radius: 1rem;
+          margin: 8px;
+          margin-left: 1rem;
+          margin-bottom: 0;
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+
+        #workspaces button {
+          color: @magenta;
+          border-radius: 1rem;
+          padding: 0.4rem;
+        }
+
+        #workspaces button.empty {
+          color: @foreground;
+          border-radius: 1rem;
+        }
+
+        #workspaces button.active {
+          color: @blue;
+          border-radius: 1rem;
+        }
+
+        #workspaces button:hover {
+          color: @magenta_alt;
+          border-radius: 1rem;
+        }
+
+        #workspaces button.urgent {
+          color: @magenta;
+          border-radius: 1rem;
+          animation-name: blink;
+          animation-duration: 1s;
+          animation-timing-function: steps(200);
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+        }
+
+        #custom-temperature {
+          color: @yellow;
+          border-radius: 1rem 0px 0px 1rem;
+          margin-left: 1rem;
+        }
+
+        #custom-temperature.critical {
+          animation-name: blink;
+          animation-duration: 1s;
+          animation-timing-function: steps(200);
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+        }
+
+        #cpu {
+          color: @magenta;
+        }
+
+        #memory {
+          color: @cyan;
+        }
+
+        #disk {
+          color: @blue;
+          border-radius: 0px 1rem 1rem 0px;
+          margin-right: 1rem;
+        }
+
+        #network {
+          color: @magenta;
+        }
+
+        #custom-nix {
+          color: @orange;
+          border-radius: 1rem 0px 0px 1rem;
+          margin-left: 1rem;
+        }
+
+        #clock {
+          color: @blue;
+          border-radius: 0px 1rem 1rem 0px;
+          margin-right: 1rem;
+        }
+
+        #custom-battery {
+          color: @cyan;
+        }
+
+        #custom-battery.critical {
+          animation-name: blink;
+          animation-duration: 1s;
+          animation-timing-function: steps(200);
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+        }
+
+        #custom-backlight {
+          color: @yellow;
+        }
+
+        #wireplumber {
+          color: @green;
+        }
+
+        #wireplumber.muted {
+          color: @background;
           background-color: @red;
         }
-      }
 
-      * {
-        font-family:
-          Symbols Nerd Font,
-          FiraCode Nerd Font Mono;
-        font-size: 15px;
-        min-height: 0;
-        margin-top: 0px;
-      }
+        #custom-music {
+          color: @cyan_alt;
+          border-radius: 1rem;
+        }
 
-      #custom-temperature,
-      #cpu,
-      #memory,
-      #disk,
-      #network,
-      #custom-nix,
-      #custom-music,
-      #tray,
-      #custom-backlight,
-      #clock,
-      #custom-battery,
-      #wireplumber,
-      #custom-scrot {
-        background-color: @background;
-        padding: 0.5rem 0.8rem;
-        margin: 8px 0 0 0;
-      }
+        #custom-scrot {
+          margin-right: 1rem;
+          border-radius: 1rem;
+          color: @green;
+        }
 
-      #waybar {
-        background: transparent;
-        color: @background;
-      }
-
-      #workspaces {
-        background-color: @background;
-        border-radius: 1rem;
-        margin: 8px;
-        margin-left: 1rem;
-        margin-bottom: 0;
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-
-      #workspaces button {
-        color: @magenta;
-        border-radius: 1rem;
-        padding: 0.4rem;
-      }
-
-      #workspaces button.empty {
-        color: @foreground;
-        border-radius: 1rem;
-      }
-
-      #workspaces button.active {
-        color: @blue;
-        border-radius: 1rem;
-      }
-
-      #workspaces button:hover {
-        color: @magenta_alt;
-        border-radius: 1rem;
-      }
-
-      #workspaces button.urgent {
-        color: @magenta;
-        border-radius: 1rem;
-        animation-name: blink;
-        animation-duration: 1s;
-        animation-timing-function: steps(200);
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-      }
-
-      #custom-temperature {
-        color: @yellow;
-        border-radius: 1rem 0px 0px 1rem;
-        margin-left: 1rem;
-      }
-
-      #custom-temperature.critical {
-        animation-name: blink;
-        animation-duration: 1s;
-        animation-timing-function: steps(200);
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-      }
-
-      #cpu {
-        color: @magenta;
-      }
-
-      #memory {
-        color: @cyan;
-      }
-
-      #disk {
-        color: @blue;
-        border-radius: 0px 1rem 1rem 0px;
-        margin-right: 1rem;
-      }
-
-      #network {
-        color: @magenta;
-      }
-
-      #custom-nix {
-        color: @orange;
-        border-radius: 1rem 0px 0px 1rem;
-        margin-left: 1rem;
-      }
-
-      #clock {
-        color: @blue;
-        border-radius: 0px 1rem 1rem 0px;
-        margin-right: 1rem;
-      }
-
-      #custom-battery {
-        color: @cyan;
-      }
-
-      #custom-battery.critical {
-        animation-name: blink;
-        animation-duration: 1s;
-        animation-timing-function: steps(200);
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-      }
-
-      #custom-backlight {
-        color: @yellow;
-      }
-
-      #wireplumber {
-        color: @green;
-      }
-
-      #wireplumber.muted {
-        color: @background;
-        background-color: @red;
-      }
-
-      #custom-music {
-        color: @cyan_alt;
-        border-radius: 1rem;
-      }
-
-      #custom-scrot {
-        margin-right: 1rem;
-        border-radius: 1rem;
-        color: @green;
-      }
-
-      #tray {
-        margin-right: 1rem;
-        border-radius: 1rem;
-      }
-    '';
+        #tray {
+          margin-right: 1rem;
+          border-radius: 1rem;
+        }
+      '';
     settings = {
       mainBar = {
         layer = "top"; # Waybar at top layer
@@ -208,7 +211,7 @@
           "memory"
           "disk"
         ];
-        modules-center = [ "custom/music" ];
+        modules-center = ["custom/music"];
         modules-right = [
           "custom/nix"
           "custom/backlight"

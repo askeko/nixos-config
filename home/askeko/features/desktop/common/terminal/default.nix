@@ -1,5 +1,4 @@
-{ vars, ... }:
-let
+{vars, ...}: let
   terminals = {
     kitty = ./kitty.nix;
     wezterm = ./wezterm.nix;
@@ -10,8 +9,7 @@ let
   chosen =
     terminals.${vars.terminal}
       or (throw "Unsupported terminal '${vars.terminal}'. Choose one of: ${builtins.concatStringsSep ", " (builtins.attrNames terminals)}");
-in
-{
+in {
   # Only the chosen terminal module is imported
-  imports = [ chosen ];
+  imports = [chosen];
 }

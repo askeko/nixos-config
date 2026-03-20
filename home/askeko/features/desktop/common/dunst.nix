@@ -1,6 +1,5 @@
 # The notification daemon
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.dunst = {
     enable = true;
   };

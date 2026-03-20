@@ -1,8 +1,10 @@
-{ config, pkgs, ... }:
-let
-  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in
 {
+  config,
+  pkgs,
+  ...
+}: let
+  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+in {
   # User setup
   users.users.askeko = {
     isNormalUser = true;
@@ -20,6 +22,6 @@ in
 
   security.pam.services = {
     # Configure PAM to enable hyprland to perform authentication.
-    hyprlock = { };
+    hyprlock = {};
   };
 }

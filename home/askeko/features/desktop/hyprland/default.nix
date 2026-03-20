@@ -2,12 +2,10 @@
 # hyprland configuration
 # Enable with "hyprland.enable = true;"
 #
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   scrot = pkgs.writeShellScriptBin "scrot" (builtins.readFile ./scripts/scrot.sh);
   pwrmenu = pkgs.writeShellScriptBin "pwrmenu" (builtins.readFile ./scripts/pwrmenu.sh);
-in
-{
+in {
   imports = [
     ../common/default.nix
     ../common/wayland-wm/default.nix

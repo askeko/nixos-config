@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.nvf.settings.vim = {
     # Treesitter
     treesitter = {
@@ -37,6 +36,9 @@
       nix = {
         enable = true;
         lsp.enable = true;
+        format = {
+          type = ["alejandra"];
+        };
       };
 
       # TypeScript/JavaScript
@@ -63,12 +65,12 @@
         enable = true;
         lsp = {
           enable = true;
-          servers = [ "pyright" ];
+          servers = ["pyright"];
         };
         treesitter.enable = true;
         format = {
           enable = true;
-          type = [ "ruff" ];
+          type = ["ruff"];
         };
       };
 
@@ -77,7 +79,7 @@
         enable = true;
         lsp = {
           enable = true;
-          servers = [ "roslyn_ls" ];
+          servers = ["roslyn_ls"];
         };
         treesitter.enable = true;
       };
@@ -111,7 +113,7 @@
 
     # Additional LSP servers using modern vim.lsp API
     luaConfigRC.extra-lsp-servers = ''
-      -- Tailwind CSS Language Server  
+      -- Tailwind CSS Language Server
       vim.lsp.config('tailwindcss', {
         cmd = { 'tailwindcss-language-server', '--stdio' },
         filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
@@ -120,6 +122,21 @@
 
       -- Enable them
       vim.lsp.enable('tailwindcss')
+
+      -- Register alejandra in conform for nix files using pinned version
+      require("conform").formatters.alejandra = {
+        command = '${pkgs.alejandra}/bin/alejandra',
+      }
+      require("conform").formatters_by_ft.nix = { "alejandra" }
+
+      -- Override <leader>lf to use conform instead of LSP format
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          vim.keymap.set("n", "<leader>lf", function()
+            require("conform").format({ bufnr = 0, lsp_fallback = true })
+          end, { buffer = args.buf, desc = "Format" })
+        end,
+      })
     '';
   };
 
