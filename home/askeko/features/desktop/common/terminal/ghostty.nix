@@ -4,7 +4,7 @@
       enable = true;
       enableZshIntegration = true;
       settings = {
-        theme = "Flexoki Dark";
+        config-file = "/home/askeko/.config/theme/current/ghostty";
         font-size = 11;
         font-family = "FiraCode Nerd Font";
         font-style = "Regular";

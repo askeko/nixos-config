@@ -3,6 +3,7 @@
     ./bufferline.nix
     ./fidget.nix
     ./git.nix
+    ./highlight-colors.nix
     ./lualine.nix
     ./navigation.nix
     ./neotest.nix

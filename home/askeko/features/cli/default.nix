@@ -3,6 +3,7 @@
     ./bat.nix
     ./btop.nix
     ./direnv.nix
+    ./fastfetch.nix
     ./git.nix
     ./yazi.nix
     ./zsh.nix

@@ -109,6 +109,7 @@
       "$mainMod, A, exec, hyprctl --batch 'keyword general:gaps_in 5 ; keyword general:gaps_out 2, 8, 8, 8 ; keyword general:border_size 3 ; keyword decoration:rounding 5 ; keyword decoration:drop_shadow true'"
       "$mainMod SHIFT, A, exec, hyprctl --batch 'keyword general:gaps_in 0 ; keyword general:gaps_out 0 ; keyword general:border_size 3 ; keyword decoration:rounding 0 ; keyword decoration:drop_shadow false'"
 
+      "$mainMod SHIFT, T, exec, appearance-picker"
       "$mainMod SHIFT, Q, exec, pwrmenu"
       "$mainMod, Print, exec, scrot"
       "$mainMod Shift, P, exec, scrot"

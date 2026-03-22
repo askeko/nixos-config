@@ -1,6 +1,7 @@
 {
   imports = [
     ./terminal
+    ./theme
     ./bitwarden.nix
     ./discord.nix
     ./dunst.nix
