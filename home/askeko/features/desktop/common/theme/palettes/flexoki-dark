@@ -1,0 +1,24 @@
+BASE00=#100F0F
+BASE01=#1C1B1A
+BASE02=#282726
+BASE03=#343331
+BASE04=#878580
+BASE05=#CECDC3
+BASE06=#DAD8CE
+BASE07=#FFFCF0
+BASE08=#AF3029
+BASE09=#BC5215
+BASE0A=#AD8301
+BASE0B=#66800B
+BASE0C=#24837B
+BASE0D=#205EA6
+BASE0E=#5E409D
+BASE0F=#A02F6F
+
+NVIM_THEME=flexoki-dark
+NVIM_BACKGROUND=dark
+GHOSTTY_THEME="Flexoki Dark"
+CURSOR_THEME=phinger-cursors-dark                                                                                                                                                                           
+CURSOR_SIZE=32
+WALLPAPER=$HOME/.config/theme/wallpapers/flexoki-dark.jpg
+GTK_COLOR_SCHEME=prefer-dark

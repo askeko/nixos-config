@@ -41,6 +41,7 @@ in {
         "waybar"
         "blueman-applet"
         "playerctld"
+        "wallpaper-restore"
       ];
     };
   };

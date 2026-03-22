@@ -13,26 +13,8 @@
       css
       */
       ''
-        /* Everforest Theme */
-        @define-color background        #2D353B;
-        @define-color background_alt    #343F44;
-        @define-color foreground        #D3C6AA;
-        @define-color blue              #7FBBB3;
-        @define-color blue_alt          #a5cfc9;
-        @define-color cyan              #83C092;
-        @define-color cyan_alt          #a8d2b2;
-        @define-color magenta           #D699B6;
-        @define-color magenta_alt       #e2b7cb;
-        @define-color yellow            #DBBC7F;
-        @define-color yellow_alt        #ecd2a2;
-        @define-color green             #A7C080;
-        @define-color green_alt         #c1d2a6;
-        @define-color red               #E67E80;
-        @define-color white             #D3C6AA;
-        @define-color orange            #E69875;
 
-        @define-color grey              #7A8478;
-        @define-color light_grey        #9DA9A0;
+        @import url("/home/askeko/.config/theme/current/waybar.css");
 
         @keyframes blink {
           to {
@@ -99,7 +81,7 @@
         }
 
         #workspaces button:hover {
-          color: @magenta_alt;
+          color: @magenta;
           border-radius: 1rem;
         }
 
@@ -183,7 +165,7 @@
         }
 
         #custom-music {
-          color: @cyan_alt;
+          color: @cyan;
           border-radius: 1rem;
         }
 

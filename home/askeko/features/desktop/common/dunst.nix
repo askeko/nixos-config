@@ -98,8 +98,6 @@
       frame_width = 3;
 
       # Defines color of the frame around the notification window.
-      frame_color = "#76946a";
-
       # Define a color for the separator.
       # possible values are:
       #  * auto: dunst tries to find a color fitting to the background;
@@ -301,26 +299,16 @@
     };
 
     urgency_low = {
-      background = "#282c34";
-      foreground = "#abb2bf";
-      frame_color = "#98c379";
       timeout = 5;
-      # TODO: Fix icon path
       default_icon = "~/.config/dunst/normal.png";
     };
 
     urgency_normal = {
-      background = "#282c34";
-      foreground = "#abb2bf";
-      frame_color = "#98c379";
       timeout = 5;
       default_icon = "~/.config/dunst/normal.png";
     };
 
     urgency_critical = {
-      background = "#282c34";
-      foreground = "#abb2bf";
-      frame_color = "#e06c75";
       timeout = 10;
       default_icon = "~/.config/dunst/critical.png";
     };
