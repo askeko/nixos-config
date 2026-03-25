@@ -79,6 +79,14 @@
           ./hosts/lazarus
         ];
       };
+
+      # Desktop configuration
+      shrek = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/shrek
+        ];
+      };
     };
 
     # Standalone home-manager configuration entrypoint
