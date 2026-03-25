@@ -11,7 +11,7 @@
   wayland.windowManager.hyprland.settings = {
     monitor = [
       "desc:Samsung Electric Company Odyssey G85SB H1AK500000,3440x1440@174.96Hz,0x0,1,bitdepth, 10, cm, hdr"
-      "desc:Acer Technologies XB271HU,2560x1440@144.00Hz,-2560x0,1"
+      "desc:Acer Technologies XB271HU,2560x1440@165.00Hz,-2560x0,1"
     ];
 
     workspace = [
